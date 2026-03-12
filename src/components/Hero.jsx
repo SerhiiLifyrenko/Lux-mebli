@@ -24,7 +24,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden pt-32 pb-16 md:pt-0 md:pb-0">
+    <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden pt-16 pb-24 md:pt-0 md:pb-0">
       {/* Background with overlay */}
       <motion.div 
         initial={{ scale: 1.1, opacity: 0 }}
