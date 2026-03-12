@@ -1,0 +1,19 @@
+﻿@import "tailwindcss";
+
+@theme {
+  --color-primary: #D4AF37;
+  --color-background: #1A1A1A;
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", "Roboto", sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: white;
+    font-family: var(--font-sans);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+  }
+}
