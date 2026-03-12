@@ -64,7 +64,7 @@ export default function Hero() {
         </motion.div>
         
         {/* Features banner */}
-        <motion.div variants={itemVariants} className="mt-16 sm:mt-24 grid grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-5xl border-t border-white/10 pt-8">
+        <motion.div variants={itemVariants} className="mt-8 sm:mt-24 grid grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-5xl border-t border-white/10 pt-8">
           <div className="flex flex-col items-center text-center group">
             <span className="text-3xl font-bold text-[#D4AF37] mb-2 font-serif group-hover:scale-110 transition-transform">100%</span>
             <span className="text-sm text-gray-400">Фіксована ціна</span>

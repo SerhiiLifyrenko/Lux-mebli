@@ -71,14 +71,14 @@ export default function Team() {
                 <img 
                   src={member.image} 
                   alt={member.name} 
-                  className="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700"
+                  className="w-full h-full object-cover grayscale-0 opacity-100 scale-105 md:grayscale md:opacity-70 md:scale-100 group-hover:grayscale-0 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700"
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/80 to-transparent flex flex-col justify-end p-6">
-                <div className="relative z-10 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                <div className="relative z-10 transform translate-y-0 md:translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                   <h3 className="text-2xl font-bold text-white mb-1 font-serif">{member.name}</h3>
                   <p className="text-[#D4AF37] font-medium mb-4 text-sm uppercase tracking-wider">{member.role}</p>
-                  <p className="text-gray-300 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 h-0 group-hover:h-auto pb-4">
+                  <p className="text-gray-300 text-sm leading-relaxed opacity-100 h-auto md:opacity-0 md:h-0 group-hover:opacity-100 group-hover:h-auto transition-all duration-500 delay-100 pb-4">
                     {member.bio}
                   </p>
                 </div>
