@@ -202,7 +202,7 @@ export default function ContactForm() {
                   «Ми не просто продаємо меблі, ми допомагаємо вам раціонально розподілити бюджет, щоб результат перевершив очікування.»
                 </p>
                 <div className="flex items-center gap-3">
-                  <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=150&auto=format&fit=crop" alt="Сергій" className="w-10 h-10 rounded-full object-cover" />
+                  <img src="/media__1773314466275.jpg" alt="Сергій" className="w-10 h-10 rounded-full object-cover object-[center_22%]" />
                   <div>
                     <h5 className="font-medium text-white text-sm">Сергій</h5>
                     <p className="text-xs text-[#D4AF37]">Засновник</p>
