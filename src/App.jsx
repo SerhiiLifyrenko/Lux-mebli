@@ -17,7 +17,7 @@ function App() {
         {/* Footer */}
         <footer className="footer bg-black border-t border-white/10 py-10 mt-auto">
           <div className="container mx-auto px-4 md:px-6 text-center text-gray-500 flex flex-col items-center">
-              <h2 className="text-2xl font-serif text-white mb-4">Люкс Меблі на замовлення</h2>
+              <h2 className="text-2xl font-serif text-white mb-4">Lux Kitchen на замовлення</h2>
               <p className="text-sm">© 2026. Всі права захищені.</p>
               <p className="text-xs mt-2">Тернопіль, Україна</p>
           </div>
