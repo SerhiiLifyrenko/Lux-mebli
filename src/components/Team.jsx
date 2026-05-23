@@ -6,7 +6,8 @@ const team = [
     name: "Сергій",
     role: "Засновник",
     bio: "За 12 років особисто проконтролював запуск 700+ проєктів. Впровадив систему «подвійного контролю», де кожен виріб перевіряється технологом перед відвантаженням.",
-    image: "/team_sergey_founder.png"
+    image: "/media__1773314466275.jpg",
+    objectPosition: "object-[center_18%]"
   },
   {
     name: "Олена",
@@ -71,7 +72,7 @@ export default function Team() {
                 <img 
                   src={member.image} 
                   alt={member.name} 
-                  className="w-full h-full object-cover grayscale-0 opacity-100 scale-105 md:grayscale md:opacity-70 md:scale-100 group-hover:grayscale-0 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700"
+                  className={`w-full h-full object-cover grayscale-0 opacity-100 scale-105 md:grayscale md:opacity-70 md:scale-100 group-hover:grayscale-0 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700 ${member.objectPosition || 'object-center'}`}
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/80 to-transparent flex flex-col justify-end p-6">
