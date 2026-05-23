@@ -31,9 +31,9 @@ export default function Hero() {
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1556910103-1c02745a872f?q=80&w=2070&auto=format&fit=crop')" }}
+        style={{ backgroundImage: "url('/luxury_kitchen_hero.png')" }}
       >
-        <div className="absolute inset-0 bg-[#1A1A1A]/80 backdrop-blur-sm"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1A1A1A]/90 via-[#1A1A1A]/65 to-[#1A1A1A]/90 backdrop-blur-[1px]"></div>
       </motion.div>
 
       <motion.div 
@@ -47,11 +47,11 @@ export default function Hero() {
         </motion.div>
         
         <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight max-w-5xl font-serif">
-          Меблі за ціною договору: фіксуємо вартість у гривні до монтажу
+          Кухня на все життя.<br className="hidden sm:inline" /> Без компромісів.
         </motion.h1>
         
         <motion.p variants={itemVariants} className="text-lg md:text-xl text-gray-300 mb-10 max-w-3xl leading-relaxed">
-          Проєкт та детальний кошторис за 30 хвилин. Використовуємо еко-плити класу Е0 та фурнітуру з ресурсом 200 000 циклів відкриття. Ваша ціна не зросте, навіть якщо зміниться курс чи логістика.
+          Lux Kitchen - це Європейська якість матеріалів, австрійська фурнітура, німецька точність, українська майстерність.
         </motion.p>
         
         <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
