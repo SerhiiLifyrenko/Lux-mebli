@@ -46,13 +46,13 @@ export default function Hero() {
           Преміальні меблі на замовлення
         </motion.div>
         
-        <motion.p variants={itemVariants} className="text-lg md:text-xl text-gray-300 mb-6 max-w-3xl leading-relaxed">
+        <motion.h1 variants={itemVariants} className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight max-w-5xl font-serif">
           Lux Kitchen - це Європейська якість матеріалів, австрійська фурнітура, німецька точність, українська майстерність .
-        </motion.p>
-        
-        <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-10 leading-tight max-w-5xl font-serif">
-          Кухня на все життя.<br className="hidden sm:inline" /> Без компромісів.
         </motion.h1>
+        
+        <motion.p variants={itemVariants} className="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl leading-relaxed">
+          Кухня на все життя. Без компромісів.
+        </motion.p>
         
         <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
           <Link to="/estimate" className="bg-[#D4AF37] hover:bg-[#c19b28] text-[#1A1A1A] font-medium py-4 px-8 rounded-md transition-all duration-300 transform hover:scale-105 shadow-[0_0_20px_rgba(212,175,55,0.3)] text-center">
