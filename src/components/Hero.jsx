@@ -50,7 +50,7 @@ export default function Hero() {
           Lux Kitchen
         </motion.h1>
         
-        <motion.p variants={itemVariants} className="text-xl md:text-2xl lg:text-3xl text-[#D4AF37] font-serif mb-6 max-w-5xl leading-relaxed">
+        <motion.p variants={itemVariants} className="text-xl md:text-2xl lg:text-3xl text-white font-serif font-semibold mb-6 max-w-5xl leading-relaxed">
           Європейська якість матеріалів, австрійська фурнітура, німецька точність, українська майстерність.
         </motion.p>
         
