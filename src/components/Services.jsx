@@ -94,7 +94,7 @@ export default function Services() {
           {/* Left Floating Arrow */}
           <button 
             onClick={() => scroll('left')}
-            className="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/10 hover:border-[#D4AF37] text-white hover:text-[#D4AF37] flex items-center justify-center bg-black/75 hover:bg-black backdrop-blur-sm transition-all duration-300 active:scale-95 cursor-pointer opacity-0 group-hover/slider:opacity-100 hidden md:flex shadow-2xl"
+            className="absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/10 hover:border-[#D4AF37] text-white hover:text-[#D4AF37] flex items-center justify-center bg-black/75 hover:bg-black backdrop-blur-sm transition-all duration-300 active:scale-95 cursor-pointer opacity-80 md:opacity-0 md:group-hover/slider:opacity-100 flex shadow-2xl"
             aria-label="Попередні послуги"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -103,7 +103,7 @@ export default function Services() {
           {/* Right Floating Arrow */}
           <button 
             onClick={() => scroll('right')}
-            className="absolute -right-4 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/10 hover:border-[#D4AF37] text-white hover:text-[#D4AF37] flex items-center justify-center bg-black/75 hover:bg-black backdrop-blur-sm transition-all duration-300 active:scale-95 cursor-pointer opacity-0 group-hover/slider:opacity-100 hidden md:flex shadow-2xl"
+            className="absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/10 hover:border-[#D4AF37] text-white hover:text-[#D4AF37] flex items-center justify-center bg-black/75 hover:bg-black backdrop-blur-sm transition-all duration-300 active:scale-95 cursor-pointer opacity-80 md:opacity-0 md:group-hover/slider:opacity-100 flex shadow-2xl"
             aria-label="Наступні послуги"
           >
             <ChevronRight className="w-5 h-5" />
