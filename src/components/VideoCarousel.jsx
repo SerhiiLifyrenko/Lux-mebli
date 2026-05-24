@@ -90,11 +90,11 @@ export default function VideoCarousel() {
               <div className="relative aspect-[9/16] w-full rounded-2xl overflow-hidden bg-black border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)] group-hover/card:border-[#D4AF37]/50 transition-all duration-500">
                 {/* Silent Autoplay Video on Hover */}
                 <video 
-                  src={video.src} 
+                  src={`${video.src}#t=0.1`} 
                   muted 
                   loop 
                   playsInline 
-                  preload="metadata"
+                  preload="auto"
                   className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover/card:opacity-90 transition-opacity duration-500"
                   ref={(el) => {
                     if (el) {
