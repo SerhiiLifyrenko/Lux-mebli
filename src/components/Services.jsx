@@ -123,7 +123,7 @@ export default function Services() {
               <motion.div 
                 variants={itemVariants}
                 key={idx} 
-                className="min-w-[290px] sm:min-w-[320px] md:min-w-[380px] flex-shrink-0 snap-center bg-[#1A1A1A] rounded-xl p-8 border border-white/5 hover:border-[#D4AF37]/30 transition-all duration-300 group flex flex-col justify-between"
+                className="w-[calc(100vw-32px)] sm:w-[350px] md:w-[380px] min-w-[calc(100vw-32px)] sm:min-w-[350px] md:min-w-[380px] flex-shrink-0 snap-center bg-[#1A1A1A] rounded-xl p-8 border border-white/5 hover:border-[#D4AF37]/30 transition-all duration-300 group flex flex-col justify-between"
               >
                 <div>
                   <div className="mb-6 p-4 bg-white/5 rounded-full inline-block group-hover:scale-110 transition-transform duration-300">
