@@ -64,7 +64,7 @@ export default function ContactForm() {
             viewport={{ once: true, amount: 0.2 }}
           >
             <h2 className="text-3xl font-bold font-serif text-white mb-2">
-              Отримати розрахунок
+              Замовити консультацію
             </h2>
             <p className="text-gray-400 mb-8 max-w-sm">
               Ми підготуємо <span className="text-[#D4AF37]">3 варіанти бюджету</span> за 30 хвилин. Ваша ціна буде зафіксована у договорі.
@@ -141,7 +141,7 @@ export default function ContactForm() {
                   {formStatus === 'submitting' ? (
                      <div className="w-6 h-6 border-2 border-[#1A1A1A] border-t-transparent rounded-full animate-spin"></div>
                   ) : (
-                     'Отримати 3 варіанти розрахунку'
+                     'Замовити консультацію'
                   )}
                 </button>
                 
