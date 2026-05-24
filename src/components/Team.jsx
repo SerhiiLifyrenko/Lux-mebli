@@ -48,7 +48,7 @@ export default function Team() {
   };
 
   return (
-    <section className="py-24 bg-[#1A1A1A] relative" id="team">
+    <section className="pt-12 md:pt-16 pb-12 md:pb-16 bg-[#1A1A1A] relative" id="team">
       <motion.div 
         variants={containerVariants}
         initial="hidden"

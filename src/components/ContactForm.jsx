@@ -51,7 +51,7 @@ export default function ContactForm() {
   };
 
   return (
-    <section className="py-24 bg-[#1A1A1A] relative border-t border-white/5" id="contact">
+    <section className="pt-12 md:pt-16 pb-16 md:pb-24 bg-[#1A1A1A] relative border-t border-white/5" id="contact">
       <div className="container mx-auto px-4 md:px-6">
         <div className="max-w-5xl mx-auto bg-[#111111] rounded-2xl border border-white/5 overflow-hidden shadow-2xl flex flex-col md:flex-row">
           
