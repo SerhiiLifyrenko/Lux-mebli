@@ -36,46 +36,46 @@ export default function VideoCarousel() {
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-[#D4AF37]/5 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute top-1/2 right-0 -translate-y-1/2 w-96 h-96 bg-[#D4AF37]/5 rounded-full blur-3xl pointer-events-none"></div>
 
-      <div className="container mx-auto px-4 md:px-6">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-          <div className="max-w-2xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/20 text-[#D4AF37] text-xs font-semibold uppercase tracking-wider mb-4">
-              Живі огляди
-            </span>
-            <h2 className="text-3xl md:text-5xl font-bold font-serif text-white leading-tight">
-              Дивіться наші <span className="text-[#D4AF37]">відео готових проектів</span>
-            </h2>
-            <p className="text-gray-400 text-base md:text-lg mt-4">
-              Подивіться, як меблі від Lux Kitchen виглядають у реальних інтер’єрах клієнтів. Ніяких рендерів — тільки живі кадри та бездоганна робота вузлів.
-            </p>
-          </div>
-
-          {/* Custom navigation buttons */}
-          <div className="flex gap-3 shrink-0 self-end md:self-auto">
-            <button 
-              onClick={() => scroll('left')}
-              className="w-12 h-12 rounded-full border border-white/10 hover:border-[#D4AF37] text-white hover:text-[#D4AF37] flex items-center justify-center bg-[#1A1A1A] hover:bg-[#1A1A1A]/80 transition-all duration-300 active:scale-95 cursor-pointer animate-none"
-              aria-label="Попередні відео"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button 
-              onClick={() => scroll('right')}
-              className="w-12 h-12 rounded-full border border-white/10 hover:border-[#D4AF37] text-white hover:text-[#D4AF37] flex items-center justify-center bg-[#1A1A1A] hover:bg-[#1A1A1A]/80 transition-all duration-300 active:scale-95 cursor-pointer animate-none"
-              aria-label="Наступні відео"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
+      <div className="container mx-auto px-4 md:px-6 relative group/slider">
+        {/* Header (Centered) */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="inline-block py-1 px-3 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/20 text-[#D4AF37] text-xs font-semibold uppercase tracking-wider mb-4">
+            Живі огляди
+          </span>
+          <h2 className="text-3xl md:text-5xl font-bold font-serif text-white leading-tight mb-4">
+            Дивіться наші <span className="text-[#D4AF37]">відео готових проектів</span>
+          </h2>
+          <p className="text-gray-400 text-base md:text-lg">
+            Подивіться, як меблі від Lux Kitchen виглядають у реальних інтер’єрах клієнтів. Ніяких рендерів — тільки живі кадри та бездоганна робота вузлів.
+          </p>
         </div>
 
-        {/* Video Slider Container */}
-        <div 
-          ref={scrollContainerRef}
-          className="flex overflow-x-auto pb-6 gap-6 snap-x hide-scrollbar" 
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        >
+        {/* Video Slider Container wrapped with floating arrows */}
+        <div className="relative">
+          {/* Left Floating Arrow */}
+          <button 
+            onClick={() => scroll('left')}
+            className="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/10 hover:border-[#D4AF37] text-white hover:text-[#D4AF37] flex items-center justify-center bg-black/75 hover:bg-black backdrop-blur-sm transition-all duration-300 active:scale-95 cursor-pointer opacity-0 group-hover/slider:opacity-100 hidden md:flex shadow-2xl"
+            aria-label="Попередні відео"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+
+          {/* Right Floating Arrow */}
+          <button 
+            onClick={() => scroll('right')}
+            className="absolute -right-4 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/10 hover:border-[#D4AF37] text-white hover:text-[#D4AF37] flex items-center justify-center bg-black/75 hover:bg-black backdrop-blur-sm transition-all duration-300 active:scale-95 cursor-pointer opacity-0 group-hover/slider:opacity-100 hidden md:flex shadow-2xl"
+            aria-label="Наступні відео"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+
+          {/* Scroll Container */}
+          <div 
+            ref={scrollContainerRef}
+            className="flex overflow-x-auto pb-6 gap-6 snap-x hide-scrollbar" 
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
           {videos.map((video, idx) => (
             <motion.div 
               key={video.id}
@@ -139,6 +139,7 @@ export default function VideoCarousel() {
           ))}
         </div>
       </div>
+    </div>
 
       {/* Premium Fullscreen Lightbox Player */}
       <AnimatePresence>
