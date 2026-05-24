@@ -73,7 +73,7 @@ export default function Services() {
   };
 
   return (
-    <section className="py-24 bg-[#111111] relative border-t border-white/5 overflow-hidden">
+    <section className="pt-24 pb-6 md:pb-8 bg-[#111111] relative border-t border-white/5 overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}

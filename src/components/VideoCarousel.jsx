@@ -31,7 +31,7 @@ export default function VideoCarousel() {
   };
 
   return (
-    <section className="py-24 bg-[#111111] relative border-t border-white/5 overflow-hidden" id="video-reviews">
+    <section className="pt-6 md:pt-8 pb-24 bg-[#111111] relative border-t border-white/5 overflow-hidden" id="video-reviews">
       {/* Decorative radial gradients for luxury feel */}
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-[#D4AF37]/5 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute top-1/2 right-0 -translate-y-1/2 w-96 h-96 bg-[#D4AF37]/5 rounded-full blur-3xl pointer-events-none"></div>
