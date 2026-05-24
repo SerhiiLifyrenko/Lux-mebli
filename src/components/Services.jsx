@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Ruler, Maximize2, ShieldCheck, Droplets, MonitorSpeaker } from 'lucide-react';
+import { Ruler, Maximize2, ShieldCheck, Droplets, MonitorSpeaker, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const services = [
   {
@@ -36,6 +36,22 @@ const services = [
 ];
 
 export default function Services() {
+  const scrollContainerRef = React.useRef(null);
+
+  const scroll = (direction) => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, clientWidth } = scrollContainerRef.current;
+      const scrollTo = direction === 'left' 
+        ? scrollLeft - clientWidth * 0.75 
+        : scrollLeft + clientWidth * 0.75;
+      
+      scrollContainerRef.current.scrollTo({
+        left: scrollTo,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -74,38 +90,63 @@ export default function Services() {
           </p>
         </motion.div>
 
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {services.map((service, idx) => (
-            <motion.div 
-              variants={itemVariants}
-              key={idx} 
-              className="bg-[#1A1A1A] rounded-xl p-8 border border-white/5 hover:border-[#D4AF37]/30 transition-all duration-300 group"
-            >
-              <div className="mb-6 p-4 bg-white/5 rounded-full inline-block group-hover:scale-110 transition-transform duration-300">
-                {service.icon}
-              </div>
-              <h3 className="text-xl font-bold text-white mb-4 font-serif">{service.title}</h3>
-              
-              <div className="mb-4">
-                <p className="text-sm font-semibold text-red-400 mb-1 flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-red-400"></span> Біль
-                </p>
-                <p className="text-gray-400 text-sm">{service.pain}</p>
-              </div>
-              
-              <div className="relative pl-4 border-l-2 border-[#D4AF37]">
-                <p className="text-sm font-semibold text-[#D4AF37] mb-1">Результат</p>
-                <p className="text-gray-300 text-sm leading-relaxed">{service.result}</p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+        <div className="relative group/slider">
+          {/* Left Floating Arrow */}
+          <button 
+            onClick={() => scroll('left')}
+            className="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/10 hover:border-[#D4AF37] text-white hover:text-[#D4AF37] flex items-center justify-center bg-black/75 hover:bg-black backdrop-blur-sm transition-all duration-300 active:scale-95 cursor-pointer opacity-0 group-hover/slider:opacity-100 hidden md:flex shadow-2xl"
+            aria-label="Попередні послуги"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+
+          {/* Right Floating Arrow */}
+          <button 
+            onClick={() => scroll('right')}
+            className="absolute -right-4 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full border border-white/10 hover:border-[#D4AF37] text-white hover:text-[#D4AF37] flex items-center justify-center bg-black/75 hover:bg-black backdrop-blur-sm transition-all duration-300 active:scale-95 cursor-pointer opacity-0 group-hover/slider:opacity-100 hidden md:flex shadow-2xl"
+            aria-label="Наступні послуги"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+
+          {/* Carousel scroll container */}
+          <motion.div 
+            ref={scrollContainerRef}
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            className="flex overflow-x-auto pb-6 gap-6 snap-x hide-scrollbar"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {services.map((service, idx) => (
+              <motion.div 
+                variants={itemVariants}
+                key={idx} 
+                className="min-w-[290px] sm:min-w-[320px] md:min-w-[380px] flex-shrink-0 snap-center bg-[#1A1A1A] rounded-xl p-8 border border-white/5 hover:border-[#D4AF37]/30 transition-all duration-300 group flex flex-col justify-between"
+              >
+                <div>
+                  <div className="mb-6 p-4 bg-white/5 rounded-full inline-block group-hover:scale-110 transition-transform duration-300">
+                    {service.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-4 font-serif">{service.title}</h3>
+                  
+                  <div className="mb-6">
+                    <p className="text-sm font-semibold text-red-400 mb-1 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-red-400"></span> Біль
+                    </p>
+                    <p className="text-gray-400 text-sm">{service.pain}</p>
+                  </div>
+                </div>
+                
+                <div className="relative pl-4 border-l-2 border-[#D4AF37] mt-auto">
+                  <p className="text-sm font-semibold text-[#D4AF37] mb-1">Результат</p>
+                  <p className="text-gray-300 text-sm leading-relaxed">{service.result}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );
