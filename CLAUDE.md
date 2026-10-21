@@ -34,7 +34,8 @@
 - ТЗ пише Next.js (`getStaticProps`, `next/image`, Segment) — сайт на Vite + React. Робити в поточному стеку; перехід на Next.js лише за окремим рішенням.
 - Золото: у бренд-буці `#C4A265` і `#F7C300` упереміш, на сайті зараз `#D4AF37`. У коді шрифтів бренд-буку стоїть Cormorant Garamond замість Playfair.
 - Ціни в бренд-буці («від 850 $/п.м.», «від 650 $/п.м.») — приклади голосу, НЕ реальні ціни.
-- Instagram: у документах і @luxmebli_zakaz, і @lux_kitchen__.
+
+Вирішено: Instagram для сайту — @lux_kitchen__ (https://www.instagram.com/lux_kitchen__), а не @luxmebli_zakaz.
 
 ## Стек
 React 19 + Vite 7 + Tailwind 4 (через `@tailwindcss/vite`), react-router-dom 7, framer-motion, lucide-react (іконки), react-compare-slider (до/після).
