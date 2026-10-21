@@ -1,44 +1,41 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Star, CheckCircle } from 'lucide-react';
+import { CheckCircle, MessageCircle } from 'lucide-react';
 
+// Справжні відгуки клієнтів з Instagram Direct (@lux_kitchen__, сторіз «Відгуки»).
+// Тексти — дослівно, виправлено лише пробіли перед комами. Імен і міст клієнти не вказували — не дописувати.
 const testimonials = [
   {
-    author: "Олексій В.",
-    location: "ЖК 'Варшавський'",
-    text: "Головне — ціна в гривні не змінилася, хоча курс стрибав. Змонтували за день, сміття вивезли. Рекомендую за чесність.",
-    rating: 5,
-    tag: "Чесна ціна"
+    product: "Кухня",
+    text: "Доброго дня, неймовірно вдячні вам за нашу кухню) вона просто неймовірна і я її обожнюю) якість матеріалів та фурнітури просто супер, все продумано до дрібниць) дякую що втілили всі наші побажання 👌",
   },
   {
-    author: "Марина Сокол",
-    location: "Київ",
-    text: "Дуже переживала через запах, бо вдома немовля. Меблі привезли — жодного аромату ДСП. Все ідеально підігнано під криву стіну, щілин немає взагалі.",
-    rating: 5,
-    tag: "Екологічність"
+    product: "Кухня",
+    text: "Доброго дня. Дякую Вам за цю якісну кухню 😍 Таких швидких та професійних я давно вже не зустрічала, мені було дуже приємно у вас замовляти! Тепер прийду ще Мебелю до дитячої 😍😍",
   },
   {
-    author: "Дмитро",
-    location: "Ірпінь",
-    text: "Зробили гардеробну за 3 тижні. Дизайнер Олена переконала додати висувні ящики замість полиць — тепер реально все влізло. Якість фурнітури на висоті.",
-    rating: 5,
-    tag: "Ергономіка"
+    product: "Шафа",
+    text: "Доброго дня! Хочу залишити відгук) консультація щодо шафи пройшла на високому рівні; швидко виготовили; встановлення швидке і якісне; дуже задоволена, раджу друзям 😊",
   },
   {
-    author: "Анна П.",
-    location: "Буча",
-    text: "Була затримка монтажу на 2 дні через логістику. Компанія сама виплатила пеню за договором без жодних нагадувань з мого боку. Це і є преміальний сервіс.",
-    rating: 5,
-    tag: "Відповідальність"
+    product: "Кухня за дизайном клієнтки",
+    text: "Вітаю!) Замовляла у вас кухню під мій дизайн. Я в захваті, все зробили, як я і хотіла, дуже швидко, дякую!",
   },
   {
-    author: "Віктор Іванович",
-    location: "ЖК 'Новопечерські Липки'",
-    text: "Вже третій об'єкт роблю з ними. Технолог Сергій — майстер. Робить вузли, про які інші навіть не чули. Меблі стоять як моноліт, нічого не скрипить.",
-    rating: 5,
-    tag: "Експертність"
-  }
+    product: "Дитяча кімната",
+    text: "Доброго дня 🌸 Щиро дякую Вам за підбір і допомогу дитячої кімната 😍 Вона дуже гарна 🥰",
+  },
+  {
+    product: "Кухня",
+    text: "Дякую вам велике за кухню, я в захвати, чуть пізніше скину фото, ну я дійсно дуже задоволена)",
+  },
+  {
+    product: "Шафа-купе",
+    text: "Доброго дня ) Вже з чоловіком забрали шкаф, дякую за швидку доставку, зараз будемо збирати ) Оглянули, і якісно зроблено, вже зберемо і надішлю вам фото 😍",
+  },
 ];
+
+const REVIEWS_URL = "https://www.instagram.com/stories/highlights/17926199591011988/";
 
 export default function Testimonials() {
   return (
@@ -52,10 +49,10 @@ export default function Testimonials() {
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <h2 className="text-3xl md:text-5xl font-bold font-serif text-white mb-6">
-            Відгуки, які <span className="text-[#D4AF37]">спростовують страхи</span>
+            Що пишуть <span className="text-[#D4AF37]">наші клієнти</span>
           </h2>
           <p className="text-gray-400 text-lg">
-            Наші клієнти теж сумнівалися, поки не переконалися в якості на власному досвіді.
+            Справжні повідомлення, які нам надсилають у Direct після встановлення меблів.
           </p>
         </motion.div>
 
@@ -68,42 +65,37 @@ export default function Testimonials() {
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {testimonials.map((review, idx) => (
-            <div key={idx} className="min-w-[320px] md:min-w-[400px] flex-shrink-0 snap-center bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex gap-1 mb-4 text-yellow-400">
-                {[...Array(review.rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-current" />
-                ))}
-              </div>
+            <div key={idx} className="min-w-[320px] md:min-w-[400px] flex-shrink-0 snap-center bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col">
               
               <div className="mb-6 flex gap-2">
-                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 text-xs font-medium">
+                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-[#D4AF37]/15 text-[#8A6D1F] text-xs font-medium">
                   <CheckCircle className="w-3.5 h-3.5" />
-                  {review.tag}
+                  {review.product}
                 </span>
               </div>
               
               <p className="text-gray-700 mb-6 italic leading-relaxed">
-                "{review.text}"
+                «{review.text}»
               </p>
               
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold">
-                  {review.author.charAt(0)}
+              <div className="flex items-center gap-3 mt-auto">
+                <div className="w-10 h-10 rounded-full bg-[#D4AF37]/15 flex items-center justify-center text-[#B8962E]">
+                  <MessageCircle className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900">{review.author}</h4>
-                  <p className="text-xs text-gray-500">{review.location}</p>
-                </div>
-                <div className="ml-auto flex items-center gap-1 text-gray-400">
-                   <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current">
-                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/>
-                   </svg>
-                   <span className="text-xs font-medium">Google Maps</span>
+                  <h4 className="font-semibold text-gray-900">Клієнтка Lux Kitchen</h4>
+                  <p className="text-xs text-gray-500">Відгук в Instagram Direct</p>
                 </div>
               </div>
             </div>
           ))}
         </motion.div>
+
+        <div className="text-center mt-2">
+          <a href={REVIEWS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[#D4AF37] hover:text-white font-medium transition-colors">
+            Усі відгуки в нашому Instagram →
+          </a>
+        </div>
       </div>
     </section>
   );
