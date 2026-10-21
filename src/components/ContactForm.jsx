@@ -161,7 +161,7 @@ export default function ContactForm() {
             viewport={{ once: true, amount: 0.2 }}
           >
             <div className="absolute inset-0">
-              <img 
+              <img loading="lazy"
                 src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" 
                 alt="Кухня на замовлення" 
                 className="w-full h-full object-cover opacity-30 mix-blend-overlay"
@@ -202,7 +202,7 @@ export default function ContactForm() {
                   «Ми не просто продаємо меблі, ми допомагаємо вам раціонально розподілити бюджет, щоб результат перевершив очікування.»
                 </p>
                 <div className="flex items-center gap-3">
-                  <img src="/media__1773314466275.jpg" alt="Сергій" className="w-10 h-10 rounded-full object-cover object-[center_22%]" />
+                  <img loading="lazy" src="/media__1773314466275.jpg" alt="Сергій" className="w-10 h-10 rounded-full object-cover object-[center_22%]" />
                   <div>
                     <h5 className="font-medium text-white text-sm">Сергій</h5>
                     <p className="text-xs text-[#D4AF37]">Засновник</p>

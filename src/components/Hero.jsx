@@ -31,7 +31,7 @@ export default function Hero() {
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/luxury_kitchen_hero.png')" }}
+        style={{ backgroundImage: "url('/luxury_kitchen_hero.jpg')" }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-[#1A1A1A]/90 via-[#1A1A1A]/65 to-[#1A1A1A]/90 backdrop-blur-[1px]"></div>
       </motion.div>

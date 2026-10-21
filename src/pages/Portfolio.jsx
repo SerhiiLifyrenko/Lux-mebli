@@ -10,43 +10,43 @@ export default function Portfolio() {
       id: 1,
       title: 'Сучасна кухня в темних тонах',
       category: 'Кухні',
-      beforeStr: '/kitchen_before_1773313191683.png',
-      afterStr: '/kitchen_after_1773313216737.png'
+      beforeStr: '/kitchen_before_1773313191683.jpg',
+      afterStr: '/kitchen_after_1773313216737.jpg'
     },
     {
       id: 2,
       title: 'Мінімалістична гардеробна',
       category: 'Гардеробні',
-      beforeStr: '/wardrobe_before_1773313229910.png',
-      afterStr: '/wardrobe_after_1773313249031.png'
+      beforeStr: '/wardrobe_before_1773313229910.jpg',
+      afterStr: '/wardrobe_after_1773313249031.jpg'
     },
     {
       id: 3,
       title: 'Преміальна вітальня',
       category: 'Вітальні',
-      beforeStr: '/living_before_1773313264620.png',
-      afterStr: '/living_after_1773313288536.png'
+      beforeStr: '/living_before_1773313264620.jpg',
+      afterStr: '/living_after_1773313288536.jpg'
     },
     {
       id: 4,
       title: 'Затишна спальня',
       category: 'Спальні',
-      beforeStr: '/bedroom_before_1773313304777.png',
-      afterStr: '/bedroom_after_1773313324184.png'
+      beforeStr: '/bedroom_before_1773313304777.jpg',
+      afterStr: '/bedroom_after_1773313324184.jpg'
     },
     {
       id: 5,
       title: 'Функціональна ванна кімната',
       category: 'Ванні кімнати',
-      beforeStr: '/bathroom_before_1773313339087.png',
-      afterStr: '/bathroom_after_1773313361376.png'
+      beforeStr: '/bathroom_before_1773313339087.jpg',
+      afterStr: '/bathroom_after_1773313361376.jpg'
     },
     {
       id: 6,
       title: 'Кабінет керівника',
       category: 'Комерційні меблі',
-      beforeStr: '/commercial_before_1773313378075.png',
-      afterStr: '/commercial_after_1773313396641.png'
+      beforeStr: '/commercial_before_1773313378075.jpg',
+      afterStr: '/commercial_after_1773313396641.jpg'
     }
   ];
 

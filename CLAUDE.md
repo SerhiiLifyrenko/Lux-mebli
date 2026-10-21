@@ -48,7 +48,8 @@ React 19 + Vite 7 + Tailwind 4 (через `@tailwindcss/vite`), react-router-do
 - `src/pages/Portfolio.jsx` — `/portfolio`, роботи «до/після» (масив проєктів на початку файлу)
 - `src/components/*.jsx` — блоки головної; дані (тексти, відео, команда, відгуки) лежать масивами на початку кожного файлу
 - `src/index.css` — тема: `--color-primary #D4AF37` (золото), фон `#1A1A1A`, шрифти Playfair Display (заголовки) / Inter
-- `public/` — фото, відео (1–6.MP4), PDF; посилання на них у коді як `/назва.ext`
+- `public/` — фото (jpg), відео (1–6.MP4, стиснені до 720p), прев'ю відео `public/posters/N.jpg`, PDF; посилання на них у коді як `/назва.ext`
+- `vercel.json` — переадресація всіх адрес на React (щоб /estimate тощо не давали 404)
 
 ## Форми
 ContactForm і Estimate відправляють заявки через Web3Forms (`api.web3forms.com/submit`, ключ у коді — він публічний за задумом сервісу).
@@ -57,7 +58,7 @@ ContactForm і Estimate відправляють заявки через Web3For
 `temp.js` (зламаний чернетковий скрипт), `src/App.css` і `src/assets/react.svg` (не використовуються). Видаляти лише з дозволу Сергія.
 
 ## Технічні правила
-- Не відкривати `public/` (79 МБ медіа), `package-lock.json`, `dist/`, `node_modules/`. Для назв файлів — `ls public`.
+- Не відкривати `public/` (~15 МБ медіа), `package-lock.json`, `dist/`, `node_modules/`. Для назв файлів — `ls public`.
 - Читати лише файли, потрібні для задачі: спершу цей файл, потім точковий `grep`. Правки точкові.
 - Одна задача — одна гілка `claude/<коротка-назва>` і один PR; у `main` напряму не пушити.
 - Перед пушем — `npm run build`. Після push — `git fetch` цієї гілки.
