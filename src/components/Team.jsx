@@ -13,19 +13,19 @@ const team = [
     name: "Олена",
     role: "Головний дизайнер",
     bio: "Автор 300+ преміум-інтер’єрів. Її креслення настільки детальні, що під час монтажу не виникає жодного «підпилювання» чи коректив на місці.",
-    image: "/team_elena_realistic.png"
+    image: "/team_elena_realistic.jpg"
   },
   {
     name: "Сергій",
     role: "Головний технолог",
     bio: "Експерт із фурнітури Blum та Hettich. Розробляє конструктивні рішення, які дозволяють важким фасадам працювати плавно протягом 15 років.",
-    image: "/team_sergey2_1773314527562.png"
+    image: "/team_sergey2_1773314527562.jpg"
   },
   {
     name: "Іван",
     role: "Майстер монтажу",
     bio: "Має досвід роботи зі шпоном та каменем понад 10 років. Збирає складні об’єкти за 8 годин, залишаючи після себе ідеально чисте приміщення.",
-    image: "/team_ivan_1773314544606.png"
+    image: "/team_ivan_1773314544606.jpg"
   }
 ];
 
@@ -69,7 +69,7 @@ export default function Team() {
           {team.map((member, idx) => (
             <motion.div variants={itemVariants} key={idx} className="group relative overflow-hidden rounded-xl bg-[#111111] border border-white/5 hover:border-[#D4AF37]/50 transition-colors duration-500">
               <div className="aspect-[3/4] overflow-hidden">
-                <img 
+                <img loading="lazy"
                   src={member.image} 
                   alt={member.name} 
                   className={`w-full h-full object-cover grayscale-0 opacity-100 scale-105 group-hover:grayscale group-hover:scale-100 group-hover:opacity-30 transition-all duration-700 ${member.objectPosition || 'object-center'}`}
