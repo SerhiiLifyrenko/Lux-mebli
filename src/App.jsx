@@ -1,12 +1,23 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { track } from './lib/pixel';
 import Home from './pages/Home';
 import Estimate from './pages/Estimate';
 import Portfolio from './pages/Portfolio';
 
+// PageView для Meta Pixel при першому відкритті та кожному переході між сторінками
+function PixelPageView() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    track('PageView');
+  }, [pathname]);
+  return null;
+}
+
 function App() {
   return (
     <Router>
+      <PixelPageView />
       <div className="min-h-screen bg-[#1A1A1A] text-white flex flex-col">
         <Routes>
           <Route path="/" element={<Home />} />
