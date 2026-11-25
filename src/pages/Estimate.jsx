@@ -222,12 +222,12 @@ export default function Estimate() {
             <AnimatePresence mode="wait">
               {!isContactStep ? (
                 <motion.div key={step.key} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.2 }}>
-                  <h1 className="text-2xl md:text-3xl font-serif text-white mb-2">{step.title}</h1>
+                  <h1 className="text-2xl md:text-3xl font-serif text-[#D4AF37] mb-2">{step.title}</h1>
                   {step.hint && <p className="text-sm text-gray-400 mb-6">{step.hint}</p>}
                   <div className={`grid gap-2.5 md:gap-3 ${step.hint ? '' : 'mt-6'} ${hasImages ? 'grid-cols-2 md:grid-cols-3' : ''}`}>
                     {step.options.map(({ label, image }) => (
                       <button key={label} type="button" onClick={() => choose(label)}
-                        className={`relative flex flex-col justify-start text-left rounded-lg border overflow-hidden transition-colors ${isChosen(label) ? 'border-[#D4AF37] text-white bg-[#D4AF37]/10' : 'border-white/10 text-gray-200 bg-black/40 hover:border-[#D4AF37]'}`}>
+                        className={`relative flex flex-col justify-start text-left rounded-lg border overflow-hidden transition-colors ${isChosen(label) ? 'border-[#D4AF37] border-2 text-[#E8C860] bg-[#D4AF37]/15' : 'border-white/10 text-[#D4AF37] bg-black/40 hover:border-[#D4AF37]'}`}>
                         {image && <img src={image} alt="" className={step.imageFit === 'contain' ? 'w-full aspect-square object-contain bg-white' : 'w-full aspect-square object-cover'} />}
                         <span className={`flex items-center gap-3 ${image ? 'px-3 py-2 text-sm' : 'px-5 py-4'}`}>
                           {step.multi && (
@@ -240,9 +240,9 @@ export default function Estimate() {
                       </button>
                     ))}
                   </div>
-                  {step.multi && (
-                    <button type="button" onClick={next} disabled={!canGoNext}
-                      className="sticky bottom-20 md:static mt-6 w-full h-12 rounded-lg bg-[#D4AF37] text-[#1A1A1A] font-medium flex items-center justify-center gap-2 shadow-[0_-8px_24px_rgba(0,0,0,0.6)] md:shadow-none disabled:opacity-40 disabled:bg-[#5a4c1f] disabled:text-gray-300">
+                  {step.multi && canGoNext && (
+                    <button type="button" onClick={next}
+                      className="sticky bottom-20 md:static mt-6 w-full h-12 rounded-lg bg-[#D4AF37] text-[#1A1A1A] font-medium flex items-center justify-center gap-2 shadow-[0_-8px_24px_rgba(0,0,0,0.6)] md:shadow-none">
                       Далі <ArrowRight className="w-4 h-4" />
                     </button>
                   )}
@@ -250,7 +250,7 @@ export default function Estimate() {
               ) : (
                 <motion.form key="contact" onSubmit={handleSubmit} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.2 }} className="space-y-5">
                   <div>
-                    <h1 className="text-2xl md:text-3xl font-serif text-white mb-2">Куди надіслати розрахунок?</h1>
+                    <h1 className="text-2xl md:text-3xl font-serif text-[#D4AF37] mb-2">Куди надіслати розрахунок?</h1>
                     <p className="text-sm text-gray-400">Порахую вартість і запропоную, як оптимізувати під ваш бюджет.</p>
                   </div>
 
