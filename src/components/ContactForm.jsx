@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { track } from '../lib/pixel';
+import { notifyTelegram } from '../lib/notify';
 import { CheckCircle2, AlertCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -20,6 +21,7 @@ export default function ContactForm() {
     
     const formData = new FormData(e.target);
     formData.append("access_key", "86f06ba2-b236-4f25-b5ae-80a495fad8e6"); 
+    notifyTelegram(['🔔 Нова заявка з форми на головній — Lux Kitchen', '', `Ім'я: ${formData.get('name') || '—'}`, `Телефон: ${formData.get('phone') || '—'}`, `Що цікавить: ${formData.get('type') || '—'}`].join('\n'));
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {

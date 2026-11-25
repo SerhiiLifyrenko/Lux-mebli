@@ -54,6 +54,7 @@ React 19 + Vite 7 + Tailwind 4 (через `@tailwindcss/vite`), react-router-do
 - `vercel.json` — переадресація всіх адрес на React (щоб /estimate тощо не давали 404)
 
 ## Форми
+Усі заявки (квіз і форма внизу головної) дублюються в Telegram через `api/lead.js` (Vercel Function). Потрібні змінні у Vercel → Settings → Environment Variables: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` (кілька — через кому); без них функція мовчки пропускає. `vercel.json` не переадресовує `/api/*` на React.
 ContactForm і квіз (Estimate) відправляють заявки через Web3Forms (`api.web3forms.com/submit`, ключ у коді — він публічний за задумом сервісу) на пошту Сергія. Квіз шле українську тему й поля.
 
 ## Залишки, не чіпати без запиту
