@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { track } from '../lib/pixel';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, CheckCircle2, AlertCircle } from 'lucide-react';
 
 export default function Estimate() {
   const [formStatus, setFormStatus] = useState('idle'); // idle, submitting, success, error
+
+  // ViewContent — відкрив сторінку прорахунку
+  useEffect(() => {
+    track('ViewContent', { content_name: 'estimate_form' });
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,6 +28,7 @@ export default function Estimate() {
       
       if (data.success) {
         setFormStatus('success');
+        track('Lead', { content_name: 'estimate_form' });
         e.target.reset(); // Очищаємо форму після успішної відправки
       } else {
         console.error("Помилка відправки", data);
