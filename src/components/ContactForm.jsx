@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import { track } from '../lib/pixel';
 import { CheckCircle2, AlertCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function ContactForm() {
   const [formStatus, setFormStatus] = useState('idle'); // idle, submitting, success, error
+  const viewSent = useRef(false);
+
+  // ViewContent — коли людина почала заповнювати форму (один раз)
+  const handleFirstFocus = () => {
+    if (viewSent.current) return;
+    viewSent.current = true;
+    track('ViewContent', { content_name: 'home_contact_form' });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,6 +30,7 @@ export default function ContactForm() {
       
       if (data.success) {
         setFormStatus('success');
+        track('Lead', { content_name: 'home_contact_form' });
         e.target.reset(); // Очищаємо форму після успішної відправки
       } else {
         console.error("Помилка відправки", data);
@@ -85,7 +95,7 @@ export default function ContactForm() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} onFocus={handleFirstFocus} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Ім'я</label>
                   <input 
