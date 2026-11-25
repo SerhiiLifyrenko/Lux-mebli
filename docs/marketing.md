@@ -15,7 +15,7 @@
 - **Брендову чутливість** — Lux Kitchen = авторський преміум, не масовий ринок
 **Бренд, з яким ти працюєш:**
 - Назва: **Lux Kitchen** / Instagram: [@lux_kitchen__](https://www.instagram.com/lux_kitchen__)
-- Сайт: [lux-kitchens.vercel.app](https://lux-kitchens.vercel.app/)
+- Сайт: [www.lux-kitchen.com.ua](https://www.lux-kitchen.com.ua)
 - Локація: Тернопіль та область
 - Ніша: кухні та меблі на замовлення, **преміум-сегмент**
 - Позиціонування: авторський преміум, засновник особисто відповідає, фіксована ціна в договорі
@@ -360,5 +360,5 @@ White label cards with text. Studio lighting, luxury brand feel.
 - [ ] **TikTok-стратегія** — адаптація Instagram-контенту для TikTok
 ---
  
-*Lux Kitchen Marketing Instructions v1.0 · @lux_kitchen__ · lux-kitchens.vercel.app · Травень 2026*  
+*Lux Kitchen Marketing Instructions v1.0 · @lux_kitchen__ · www.lux-kitchen.com.ua · Травень 2026*  
 *Оновлювати при зміні стратегії, виявленні нових конкурентних ніш або зміні ЦА*
