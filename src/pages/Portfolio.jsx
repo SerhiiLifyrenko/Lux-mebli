@@ -66,13 +66,13 @@ export default function Portfolio() {
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <Link to="/" className="inline-flex text-gray-400 hover:text-[#D4AF37] transition-colors items-center gap-2 group mb-8">
+          <Link to="/" className="inline-flex text-gray-400 hover:text-[#FFD60A] transition-colors items-center gap-2 group mb-8">
              <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
              <span>Повернутися на головну</span>
           </Link>
           
           <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6">
-            Наші <span className="text-[#D4AF37] italic">роботи</span>
+            Наші <span className="text-[#FFD60A] italic">роботи</span>
           </h1>
           <p className="text-gray-400 max-w-3xl text-lg mb-4">
             Перегляньте приклади реалізованих проєктів <span className="text-white font-medium">до та після</span> встановлення меблів. Потягніть бігунок на фото, щоб порівняти результат.
@@ -92,7 +92,7 @@ export default function Portfolio() {
               onClick={() => setActiveCategory(category)}
               className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 border ${
                 activeCategory === category 
-                  ? 'bg-[#D4AF37] border-[#D4AF37] text-[#1A1A1A] shadow-[0_0_15px_rgba(212,175,55,0.3)]' 
+                  ? 'bg-[#FFD60A] border-[#FFD60A] text-[#1A1A1A] shadow-[0_0_15px_rgba(255,214,10,0.3)]' 
                   : 'bg-transparent border-white/20 text-gray-300 hover:border-white/50'
               }`}
             >
@@ -112,7 +112,7 @@ export default function Portfolio() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4 }}
-                className="group relative bg-[#1A1A1A] rounded-xl overflow-hidden border border-white/5 hover:border-[#D4AF37]/30 transition-all duration-500 shadow-xl"
+                className="group relative bg-[#1A1A1A] rounded-xl overflow-hidden border border-white/5 hover:border-[#FFD60A]/30 transition-all duration-500 shadow-xl"
               >
                 <div className="relative w-full h-[300px] bg-black">
                   <ReactCompareSlider
@@ -124,12 +124,12 @@ export default function Portfolio() {
                   <div className="absolute top-4 left-4 pointer-events-none z-10 px-3 py-1 bg-black/60 backdrop-blur-md rounded backdrop-filter text-white/90 text-xs font-semibold uppercase tracking-wider">
                     До
                   </div>
-                  <div className="absolute top-4 right-4 pointer-events-none z-10 px-3 py-1 bg-[#D4AF37]/90 backdrop-blur-md rounded backdrop-filter text-[#1A1A1A] text-xs font-semibold uppercase tracking-wider">
+                  <div className="absolute top-4 right-4 pointer-events-none z-10 px-3 py-1 bg-[#FFD60A]/90 backdrop-blur-md rounded backdrop-filter text-[#1A1A1A] text-xs font-semibold uppercase tracking-wider">
                     Після
                   </div>
                 </div>
                 <div className="p-6 relative z-10 bg-gradient-to-t from-[#1A1A1A] via-[#1A1A1A] to-transparent">
-                  <span className="text-[#D4AF37] text-xs font-medium tracking-wider uppercase mb-2 block">{project.category}</span>
+                  <span className="text-[#FFD60A] text-xs font-medium tracking-wider uppercase mb-2 block">{project.category}</span>
                   <h3 className="text-xl font-serif text-white">{project.title}</h3>
                 </div>
               </motion.div>

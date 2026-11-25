@@ -33,17 +33,17 @@ export default function VideoCarousel() {
   return (
     <section className="pt-6 md:pt-8 pb-12 md:pb-16 bg-[#111111] relative border-t border-white/5 overflow-hidden" id="video-reviews">
       {/* Decorative radial gradients for luxury feel */}
-      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-[#D4AF37]/5 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-96 h-96 bg-[#D4AF37]/5 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-[#FFD60A]/5 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-96 h-96 bg-[#FFD60A]/5 rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="container mx-auto px-4 md:px-6 relative group/slider">
         {/* Header (Centered) */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block py-1 px-3 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/20 text-[#D4AF37] text-xs font-semibold uppercase tracking-wider mb-4">
+          <span className="inline-block py-1 px-3 rounded-full bg-[#FFD60A]/10 border border-[#FFD60A]/20 text-[#FFD60A] text-xs font-semibold uppercase tracking-wider mb-4">
             Живі огляди
           </span>
           <h2 className="text-3xl md:text-5xl font-bold font-serif text-white leading-tight mb-4">
-            Дивіться наші <span className="text-[#D4AF37]">відео готових проектів</span>
+            Дивіться наші <span className="text-[#FFD60A]">відео готових проектів</span>
           </h2>
           <p className="text-gray-400 text-base md:text-lg">
             Подивіться, як меблі від Lux Kitchen виглядають у реальних інтер’єрах клієнтів. Ніяких рендерів — тільки живі кадри та бездоганна робота вузлів.
@@ -55,7 +55,7 @@ export default function VideoCarousel() {
           {/* Left Floating Arrow */}
           <button 
             onClick={() => scroll('left')}
-            className="absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/10 hover:border-[#D4AF37] text-white hover:text-[#D4AF37] flex items-center justify-center bg-black/75 hover:bg-black backdrop-blur-sm transition-all duration-300 active:scale-95 cursor-pointer opacity-80 md:opacity-0 md:group-hover/slider:opacity-100 flex shadow-2xl"
+            className="absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/10 hover:border-[#FFD60A] text-white hover:text-[#FFD60A] flex items-center justify-center bg-black/75 hover:bg-black backdrop-blur-sm transition-all duration-300 active:scale-95 cursor-pointer opacity-80 md:opacity-0 md:group-hover/slider:opacity-100 flex shadow-2xl"
             aria-label="Попередні відео"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -64,7 +64,7 @@ export default function VideoCarousel() {
           {/* Right Floating Arrow */}
           <button 
             onClick={() => scroll('right')}
-            className="absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/10 hover:border-[#D4AF37] text-white hover:text-[#D4AF37] flex items-center justify-center bg-black/75 hover:bg-black backdrop-blur-sm transition-all duration-300 active:scale-95 cursor-pointer opacity-80 md:opacity-0 md:group-hover/slider:opacity-100 flex shadow-2xl"
+            className="absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/10 hover:border-[#FFD60A] text-white hover:text-[#FFD60A] flex items-center justify-center bg-black/75 hover:bg-black backdrop-blur-sm transition-all duration-300 active:scale-95 cursor-pointer opacity-80 md:opacity-0 md:group-hover/slider:opacity-100 flex shadow-2xl"
             aria-label="Наступні відео"
           >
             <ChevronRight className="w-5 h-5" />
@@ -87,7 +87,7 @@ export default function VideoCarousel() {
               transition={{ duration: 0.3 }}
             >
               {/* Vertical Card Frame mimicking high-end smartphone screen */}
-              <div className="relative aspect-[9/16] w-full rounded-2xl overflow-hidden bg-black border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)] group-hover/card:border-[#D4AF37]/50 transition-all duration-500">
+              <div className="relative aspect-[9/16] w-full rounded-2xl overflow-hidden bg-black border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)] group-hover/card:border-[#FFD60A]/50 transition-all duration-500">
                 {/* Silent Autoplay Video on Hover */}
                 <video 
                   src={hoveredIdx === idx ? video.src : undefined}
@@ -114,21 +114,21 @@ export default function VideoCarousel() {
 
                 {/* Animated Pulsing Play Button Overlay */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="w-14 h-14 rounded-full bg-[#D4AF37] text-[#1A1A1A] flex items-center justify-center shadow-[0_0_25px_rgba(212,175,55,0.4)] transform scale-90 group-hover/card:scale-100 group-hover/card:rotate-6 transition-all duration-500">
+                  <div className="w-14 h-14 rounded-full bg-[#FFD60A] text-[#1A1A1A] flex items-center justify-center shadow-[0_0_25px_rgba(255,214,10,0.4)] transform scale-90 group-hover/card:scale-100 group-hover/card:rotate-6 transition-all duration-500">
                     <Play className="w-6 h-6 fill-current translate-x-0.5" />
                   </div>
                 </div>
 
                 {/* Floating Tags/Labels */}
                 <div className="absolute top-4 left-4 z-10">
-                  <span className="bg-[#D4AF37]/90 text-[#1A1A1A] text-[10px] font-bold py-1 px-2.5 rounded-full uppercase tracking-wider shadow">
+                  <span className="bg-[#FFD60A]/90 text-[#1A1A1A] text-[10px] font-bold py-1 px-2.5 rounded-full uppercase tracking-wider shadow">
                     Проект #{video.id}
                   </span>
                 </div>
 
                 {/* Bottom Info Details */}
                 <div className="absolute bottom-0 inset-x-0 p-6 z-10 flex flex-col justify-end">
-                  <h3 className="text-lg font-bold text-white mb-2 font-serif group-hover/card:text-[#D4AF37] transition-colors leading-tight">
+                  <h3 className="text-lg font-bold text-white mb-2 font-serif group-hover/card:text-[#FFD60A] transition-colors leading-tight">
                     {video.title}
                   </h3>
                   <p className="text-gray-300 text-xs leading-normal opacity-90 line-clamp-2">
@@ -158,7 +158,7 @@ export default function VideoCarousel() {
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="relative aspect-[9/16] w-full max-w-[420px] rounded-3xl overflow-hidden bg-black border border-white/10 shadow-[0_20px_50px_rgba(212,175,55,0.15)] flex flex-col p-1"
+              className="relative aspect-[9/16] w-full max-w-[420px] rounded-3xl overflow-hidden bg-black border border-white/10 shadow-[0_20px_50px_rgba(255,214,10,0.15)] flex flex-col p-1"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Fullscreen HD Video Player */}
@@ -174,7 +174,7 @@ export default function VideoCarousel() {
               {/* Float Close Button */}
               <button 
                 onClick={() => setActiveVideo(null)}
-                className="absolute top-4 right-4 bg-black/75 hover:bg-black text-white hover:text-[#D4AF37] w-10 h-10 rounded-full flex items-center justify-center text-lg border border-white/10 transition-colors shadow cursor-pointer z-50"
+                className="absolute top-4 right-4 bg-black/75 hover:bg-black text-white hover:text-[#FFD60A] w-10 h-10 rounded-full flex items-center justify-center text-lg border border-white/10 transition-colors shadow cursor-pointer z-50"
                 aria-label="Закрити огляд"
               >
                 <X className="w-5 h-5" />
