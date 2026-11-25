@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowRight, CheckCircle2, AlertCircle, Phone, Send, MessageCircle, Gift, Check } from 'lucide-react';
 import { track } from '../lib/pixel';
 import { contacts } from '../data/contacts';
+import { notifyTelegram } from '../lib/notify';
 
 // Квіз розрахунку (за зразком квізу Сергія в adsquiz).
 // image — шлях до картинки в public/quiz/; якщо файлу ще немає (null), варіант показується текстом.
@@ -167,6 +168,7 @@ export default function Estimate() {
     payload.append('name', form.get('name'));
     payload.append('phone', form.get('phone'));
     payload.append('message', lines.join('\n'));
+    notifyTelegram(`🔔 Нова заявка з квізу — Lux Kitchen\n\n${lines.join('\n')}`);
 
     try {
       const response = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: payload });
