@@ -155,14 +155,18 @@ export default function Estimate() {
     const objects = fmt(answers.object) || 'меблі';
     payload.append('subject', `Нова заявка з квізу — ${objects} — Lux Kitchen`);
     payload.append('from_name', 'Сайт Lux Kitchen');
-    payload.append("Ім'я", form.get('name'));
-    payload.append('Телефон', form.get('phone'));
-    payload.append('Куди писати', channel);
-    payload.append('Що замовляють', objects);
-    for (const st of visibleSteps.slice(1)) {
-      if (answers[st.key]) payload.append(st.title, fmt(answers[st.key]));
-    }
-    payload.append('Коментар', form.get('comments') || '—');
+    // Web3Forms псує кириличні НАЗВИ полів, тому поля — латиницею, а вся заявка українською — в одному тексті
+    const lines = [
+      `Ім'я: ${form.get('name')}`,
+      `Телефон: ${form.get('phone')}`,
+      `Куди писати: ${channel}`,
+      `Що замовляють: ${objects}`,
+      ...visibleSteps.slice(1).filter((st) => answers[st.key]).map((st) => `${st.title} — ${fmt(answers[st.key])}`),
+      `Коментар: ${form.get('comments') || '—'}`,
+    ];
+    payload.append('name', form.get('name'));
+    payload.append('phone', form.get('phone'));
+    payload.append('message', lines.join('\n'));
 
     try {
       const response = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: payload });
