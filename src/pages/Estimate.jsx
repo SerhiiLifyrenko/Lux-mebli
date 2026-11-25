@@ -7,7 +7,7 @@ import { contacts } from '../data/contacts';
 
 // Квіз розрахунку (за зразком квізу Сергія в adsquiz).
 // image — шлях до картинки в public/quiz/; якщо файлу ще немає (null), варіант показується текстом.
-// multi — можна обрати кілька; onlyIf — крок показується лише за умови.
+// multi — можна обрати кілька; onlyIf — крок показується лише за умови; imageFit: 'contain' — схема без обрізання.
 const isKitchen = (a) => !a.object || a.object.includes('Кухня');
 
 const STEPS = [
@@ -17,37 +17,39 @@ const STEPS = [
     hint: 'Можна обрати кілька.',
     multi: true,
     options: [
-      { label: 'Кухня', image: null },
-      { label: 'Шафа або гардеробна', image: null },
-      { label: 'Вітальня', image: null },
-      { label: 'Спальня', image: null },
-      { label: 'Дитяча', image: null },
-      { label: 'Комплексне меблювання', image: null },
+      { label: 'Кухня', image: '/quiz/obj-kukhnia.jpg' },
+      { label: 'Шафа', image: '/quiz/obj-shafa.jpg' },
+      { label: 'Гардеробна', image: '/quiz/obj-garderob.jpg' },
+      { label: 'Вітальня', image: '/quiz/obj-vitalnia.jpg' },
+      { label: 'Спальня', image: '/quiz/obj-spalnia.jpg' },
+      { label: 'Дитяча', image: '/quiz/obj-dytiacha.jpg' },
+      { label: 'Комплексне меблювання', image: '/quiz/obj-kompleks.jpg' },
     ],
   },
   {
     key: 'style',
     title: 'Який стиль вам більше подобається?',
     options: [
-      { label: 'Класична', image: null },
-      { label: 'Сучасна, мінімалізм, хай-тек', image: null },
-      { label: 'Лофт', image: null },
-      { label: 'Скандинавський', image: null },
-      { label: 'Джапанді', image: null },
-      { label: 'Не визначились', image: null },
+      { label: 'Класична', image: '/quiz/style-1.jpg' },
+      { label: 'Сучасна, мінімалізм, хай-тек', image: '/quiz/style-2.jpg' },
+      { label: 'Лофт', image: '/quiz/style-3.jpg' },
+      { label: 'Скандинавський', image: '/quiz/style-4.jpg' },
+      { label: 'Джапанді', image: '/quiz/style-5.jpg' },
+      { label: 'Не визначились', image: '/quiz/style-6.jpg' },
     ],
   },
   {
     key: 'shape',
     title: 'Оберіть форму кухні',
+    imageFit: 'contain',
     onlyIf: isKitchen,
     options: [
-      { label: 'Лінійна', image: null },
-      { label: 'Кутова', image: null },
-      { label: 'П-подібна', image: null },
-      { label: 'З островом', image: null },
-      { label: 'Паралельна', image: null },
-      { label: 'Напівострівна', image: null },
+      { label: 'Лінійна', image: '/quiz/shape-1.jpg' },
+      { label: 'Кутова', image: '/quiz/shape-2.jpg' },
+      { label: 'П-подібна', image: '/quiz/shape-3.jpg' },
+      { label: 'З островом', image: '/quiz/shape-4.jpg' },
+      { label: 'Паралельна', image: '/quiz/shape-5.jpg' },
+      { label: 'Напівострівна', image: '/quiz/shape-6.jpg' },
     ],
   },
   {
@@ -94,6 +96,11 @@ export default function Estimate() {
   const [stepIndex, setStepIndex] = useState(0);
   const [channel, setChannel] = useState('Viber');
   const [status, setStatus] = useState('idle'); // idle, submitting, success, error
+
+  // підвантажити картинки квізу заздалегідь, щоб наступні кроки відкривались миттєво
+  useEffect(() => {
+    STEPS.forEach((st) => st.options.forEach((o) => { if (o.image) new Image().src = o.image; }));
+  }, []);
 
   // ViewContent — відкрив квіз
   useEffect(() => {
@@ -168,14 +175,14 @@ export default function Estimate() {
 
   return (
     <div className="min-h-screen pt-24 pb-16 px-4 flex flex-col items-center">
-      <div className="w-full max-w-2xl mb-6 flex items-center">
+      <div className={`w-full ${hasImages && !isContactStep ? 'max-w-3xl' : 'max-w-2xl'} mb-6 flex items-center`}>
         <Link to="/" className="text-gray-400 hover:text-[#D4AF37] transition-colors flex items-center gap-2 group">
           <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
           <span>На головну</span>
         </Link>
       </div>
 
-      <div className="w-full max-w-2xl bg-[#1A1A1A] border border-white/10 rounded-2xl p-6 md:p-10 shadow-2xl">
+      <div className={`w-full ${hasImages && !isContactStep ? 'max-w-3xl' : 'max-w-2xl'} bg-[#1A1A1A] border border-white/10 rounded-2xl p-6 md:p-10 shadow-2xl">
         {status === 'success' ? (
           <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-6">
             <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -217,11 +224,11 @@ export default function Estimate() {
                 <motion.div key={step.key} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.2 }}>
                   <h1 className="text-2xl md:text-3xl font-serif text-white mb-2">{step.title}</h1>
                   {step.hint && <p className="text-sm text-gray-400 mb-6">{step.hint}</p>}
-                  <div className={`grid gap-3 ${step.hint ? '' : 'mt-6'} ${hasImages ? 'grid-cols-2' : ''}`}>
+                  <div className={`grid gap-3 ${step.hint ? '' : 'mt-6'} ${hasImages ? 'grid-cols-2 md:grid-cols-3' : ''}`}>
                     {step.options.map(({ label, image }) => (
                       <button key={label} type="button" onClick={() => choose(label)}
                         className={`relative text-left rounded-lg border overflow-hidden transition-colors ${isChosen(label) ? 'border-[#D4AF37] text-white bg-[#D4AF37]/10' : 'border-white/10 text-gray-200 bg-black/40 hover:border-[#D4AF37]'}`}>
-                        {image && <img src={image} alt={label} loading="lazy" className="w-full aspect-[4/3] object-cover" />}
+                        {image && <img src={image} alt="" className={step.imageFit === 'contain' ? 'w-full aspect-square object-contain bg-white' : 'w-full aspect-[4/3] object-cover'} />}
                         <span className={`flex items-center gap-3 ${image ? 'px-3 py-2 text-sm' : 'px-5 py-4'}`}>
                           {step.multi && (
                             <span className={`w-5 h-5 shrink-0 rounded border flex items-center justify-center ${isChosen(label) ? 'bg-[#D4AF37] border-[#D4AF37] text-[#1A1A1A]' : 'border-white/30'}`}>
