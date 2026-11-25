@@ -42,7 +42,9 @@ React 19 + Vite 7 + Tailwind 4 (через `@tailwindcss/vite`), react-router-do
 Команди: `npm run dev`, `npm run build`, `npm run lint`. Публікація — Vercel, автоматично після злиття в `main`; на кожен PR Vercel робить Preview.
 
 ## Структура
-- `src/App.jsx` — маршрути + футер (спільний для всіх сторінок)
+- `src/App.jsx` — маршрути + шапка (`Header`) + липка панель на телефоні (`MobileContactBar`) + футер з контактами (спільні для всіх сторінок)
+- `src/data/contacts.js` — телефон, Viber, Telegram, Instagram; міняти контакти лише тут
+- `src/lib/pixel.js` — відправка подій Meta Pixel (`Contact` при кліку на телефон/месенджер)
 - `src/pages/Home.jsx` — головна, збирає блоки по порядку: Hero → Services → VideoCarousel → Team → Testimonials → ContactForm
 - `src/pages/Estimate.jsx` — `/estimate`, форма прорахунку
 - `src/pages/Portfolio.jsx` — `/portfolio`, роботи «до/після» (масив проєктів на початку файлу)
