@@ -28,7 +28,7 @@
 - `brandbook.md` — кольори, шрифти, голос бренду, заборонені слова. Для дизайну й текстів.
 - `marketing.md` — ЦА, болі, тригерні фрази (для текстів сайту); решта (Meta Ads, Reels, промпти) — не для сайту.
 
-Живий сайт: https://lux-kitchens.vercel.app
+Живий сайт: https://www.lux-kitchen.com.ua (домен з 25.11.2026, реєстратор adm.tools / ukraine.com.ua; lux-kitchen.com.ua і стара lux-kitchens.vercel.app перекидають сюди — 308)
 
 ### Суперечності в документах — не вирішувати самостійно, питати Сергія
 - ТЗ пише Next.js (`getStaticProps`, `next/image`, Segment) — сайт на Vite + React. Робити в поточному стеку; перехід на Next.js лише за окремим рішенням.
