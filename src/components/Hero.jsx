@@ -63,7 +63,7 @@ export default function Hero() {
           </Link>
         </motion.div>
         <motion.p variants={itemVariants} className="mt-4 text-sm text-gray-400">
-          5 питань · 2 хвилини · відповідь у Viber, Telegram або дзвінком
+          2 хвилини · відповідь у месенджер · бонус «Топ-30 помилок при виборі кухні»
         </motion.p>
 
         {/* Аргументи — лише підтверджені факти (див. «Факти бізнесу») */}

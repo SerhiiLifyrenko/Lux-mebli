@@ -1,49 +1,93 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, CheckCircle2, AlertCircle, Phone, Send, MessageCircle } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, AlertCircle, Phone, Send, MessageCircle, Gift, Check } from 'lucide-react';
 import { track } from '../lib/pixel';
 import { contacts } from '../data/contacts';
 
-// Квіз розрахунку. Кроки й варіанти відповідей — тут.
+// Квіз розрахунку (за зразком квізу Сергія в adsquiz).
+// image — шлях до картинки в public/quiz/; якщо файлу ще немає (null), варіант показується текстом.
+// multi — можна обрати кілька; onlyIf — крок показується лише за умови.
+const isKitchen = (a) => !a.object || a.object.includes('Кухня');
+
 const STEPS = [
   {
     key: 'object',
-    title: 'Що плануєте зробити?',
-    options: ['Кухня', 'Шафа або гардеробна', 'Дитяча', 'Вітальня', 'Інші меблі'],
+    title: 'Що плануєте замовити?',
+    hint: 'Можна обрати кілька.',
+    multi: true,
+    options: [
+      { label: 'Кухня', image: null },
+      { label: 'Шафа або гардеробна', image: null },
+      { label: 'Вітальня', image: null },
+      { label: 'Спальня', image: null },
+      { label: 'Дитяча', image: null },
+      { label: 'Комплексне меблювання', image: null },
+    ],
+  },
+  {
+    key: 'style',
+    title: 'Який стиль вам більше подобається?',
+    options: [
+      { label: 'Класична', image: null },
+      { label: 'Сучасна, мінімалізм, хай-тек', image: null },
+      { label: 'Лофт', image: null },
+      { label: 'Скандинавський', image: null },
+      { label: 'Джапанді', image: null },
+      { label: 'Не визначились', image: null },
+    ],
   },
   {
     key: 'shape',
-    title: 'Яка форма кухні?',
-    hint: 'Не впевнені — оберіть «Не знаю, порадьте», підберемо разом.',
-    onlyIf: (a) => !a.object || a.object === 'Кухня',
-    options: ['Пряма', 'Кутова', 'П-подібна', 'З островом', 'Не знаю, порадьте'],
+    title: 'Оберіть форму кухні',
+    onlyIf: isKitchen,
+    options: [
+      { label: 'Лінійна', image: null },
+      { label: 'Кутова', image: null },
+      { label: 'П-подібна', image: null },
+      { label: 'З островом', image: null },
+      { label: 'Паралельна', image: null },
+      { label: 'Напівострівна', image: null },
+    ],
   },
   {
-    key: 'stage',
-    title: 'На якому етапі приміщення?',
-    hint: 'Якщо ремонт ще йде — це навіть краще: встигнемо врахувати розетки, воду й витяжку.',
-    options: ['Новобудова, ремонт ще йде', 'Ремонт закінчено', 'Міняю стару кухню / меблі', 'Є проєкт дизайнера', 'Поки рахую бюджет'],
+    key: 'length',
+    title: 'Яка довжина кухні по стінах?',
+    hint: 'Приблизно, сумарно по всіх стінах з меблями.',
+    onlyIf: isKitchen,
+    options: ['До 2 м', '3 м', '4 м', '5 м', '6 м і більше', 'Не знаю — потрібен замір'].map((label) => ({ label })),
+  },
+  {
+    key: 'important',
+    title: 'Що для вас найважливіше в новій кухні?',
+    hint: 'Можна обрати кілька.',
+    multi: true,
+    onlyIf: isKitchen,
+    options: ['Легко доглядати', 'Багато місця для зберігання', 'Щоб служила 10+ років', 'Дизайн не як у всіх'].map((label) => ({ label })),
   },
   {
     key: 'budget',
-    title: 'На який бюджет орієнтуєтесь?',
+    title: 'Який бюджет кухні для вас оптимальний?',
     hint: 'Це не зобов\'язання. Бюджет потрібен, щоб я одразу запропонував, де можна оптимізувати.',
-    options: ['До 50 000 грн', '50 000 – 150 000 грн', 'Від 150 000 грн', 'Ще не визначився'],
+    onlyIf: isKitchen,
+    options: ['100–200 тис. грн', '201–250 тис. грн', '251–300 тис. грн', '301–400 тис. грн', 'Потрібна консультація'].map((label) => ({ label })),
   },
   {
     key: 'timeline',
-    title: 'Коли хочете мати меблі?',
+    title: 'Коли плануєте отримати меблі?',
     hint: 'Від договору до монтажу — 6–8 тижнів, дата монтажу фіксується в договорі.',
-    options: ['Якнайшвидше', 'Через 1–3 місяці', 'Через 3–6 місяців', 'Поки планую'],
+    options: ['Якнайшвидше', 'Протягом 1–2 місяців', 'Протягом 3–4 місяців', 'Через 6+ місяців'].map((label) => ({ label })),
   },
 ];
 
 const CHANNELS = [
   { value: 'Viber', icon: MessageCircle },
   { value: 'Telegram', icon: Send },
+  { value: 'WhatsApp', icon: MessageCircle },
   { value: 'Подзвоніть', icon: Phone },
 ];
+
+const BONUS_PDF = '/top30errors.pdf';
 
 export default function Estimate() {
   const [answers, setAnswers] = useState({});
@@ -56,6 +100,11 @@ export default function Estimate() {
     track('ViewContent', { content_name: 'estimate_quiz' });
   }, []);
 
+  // при переході між кроками — на початок сторінки (важливо на телефоні)
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [stepIndex]);
+
   const visibleSteps = STEPS.filter((s) => !s.onlyIf || s.onlyIf(answers));
   const totalSteps = visibleSteps.length + 1; // + крок контактів
   const isContactStep = stepIndex >= visibleSteps.length;
@@ -63,12 +112,21 @@ export default function Estimate() {
   const progress = Math.round(((stepIndex + 1) / totalSteps) * 100);
 
   const choose = (value) => {
-    const next = { ...answers, [step.key]: value };
-    // якщо змінили «що робимо» з кухні на інше — прибрати відповідь про форму кухні
-    if (step.key === 'object' && value !== 'Кухня') delete next.shape;
-    setAnswers(next);
+    if (step.multi) {
+      const current = answers[step.key] || [];
+      const nextVals = current.includes(value) ? current.filter((v) => v !== value) : [...current, value];
+      setAnswers({ ...answers, [step.key]: nextVals });
+      return;
+    }
+    setAnswers({ ...answers, [step.key]: value });
     setStepIndex((i) => i + 1);
   };
+
+  const isChosen = (value) => (step?.multi ? (answers[step.key] || []).includes(value) : answers[step?.key] === value);
+  const canGoNext = step?.multi ? (answers[step.key] || []).length > 0 : Boolean(answers[step?.key]);
+  const next = () => canGoNext && setStepIndex((i) => i + 1);
+  const hasImages = step?.options.some((o) => o.image);
+  const fmt = (v) => (Array.isArray(v) ? v.join(', ') : v);
 
   const back = () => setStepIndex((i) => Math.max(0, i - 1));
 
@@ -79,17 +137,17 @@ export default function Estimate() {
 
     const payload = new FormData();
     payload.append('access_key', '86f06ba2-b236-4f25-b5ae-80a495fad8e6');
-    payload.append('subject', `Нова заявка з квізу — ${answers.object || 'меблі'} — Lux Kitchen`);
+    const objects = fmt(answers.object) || 'меблі';
+    payload.append('subject', `Нова заявка з квізу — ${objects} — Lux Kitchen`);
     payload.append('from_name', 'Сайт Lux Kitchen');
     payload.append("Ім'я", form.get('name'));
     payload.append('Телефон', form.get('phone'));
     payload.append('Куди писати', channel);
-    payload.append('Що робимо', answers.object || '—');
-    if (answers.shape) payload.append('Форма кухні', answers.shape);
-    payload.append('Етап', answers.stage || '—');
-    payload.append('Бюджет', answers.budget || '—');
-    payload.append('Коли', answers.timeline || '—');
-    payload.append('Розміри / коментар', form.get('comments') || '—');
+    payload.append('Що замовляють', objects);
+    for (const st of visibleSteps.slice(1)) {
+      if (answers[st.key]) payload.append(st.title, fmt(answers[st.key]));
+    }
+    payload.append('Коментар', form.get('comments') || '—');
 
     try {
       const response = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: payload });
@@ -107,7 +165,6 @@ export default function Estimate() {
     }
   };
 
-  const optionBtn = 'w-full text-left bg-black/40 border border-white/10 hover:border-[#D4AF37] hover:text-white rounded-lg px-5 py-4 text-gray-200 transition-colors';
 
   return (
     <div className="min-h-screen pt-24 pb-16 px-4 flex flex-col items-center">
@@ -130,9 +187,15 @@ export default function Estimate() {
                 ? 'Я подзвоню, щоб уточнити розміри, і підготую розрахунок вартості з варіантами, як вкластися у ваш бюджет.'
                 : `Напишу вам у ${channel}, уточню розміри й надішлю розрахунок вартості з варіантами, як вкластися у ваш бюджет.`}
             </p>
-            <a href={contacts.instagramHref} target="_blank" rel="noopener noreferrer" className="text-[#D4AF37] hover:underline">
-              Поки чекаєте — наші роботи в Instagram {contacts.instagramHandle}
+            <a href={BONUS_PDF} target="_blank" rel="noopener noreferrer" onClick={() => track('ViewContent', { content_name: 'bonus_top30' })}
+              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto bg-[#D4AF37] hover:bg-[#c19b28] text-[#1A1A1A] font-medium py-4 px-8 rounded-lg mb-6">
+              <Gift className="w-5 h-5" /> Завантажити бонус: Топ-30 помилок
             </a>
+            <div>
+              <a href={contacts.instagramHref} target="_blank" rel="noopener noreferrer" className="text-[#D4AF37] hover:underline">
+                Поки чекаєте — наші роботи в Instagram {contacts.instagramHandle}
+              </a>
+            </div>
           </motion.div>
         ) : (
           <>
@@ -141,6 +204,12 @@ export default function Estimate() {
               <div className="h-1 bg-white/10 rounded-full overflow-hidden">
                 <motion.div className="h-full bg-[#D4AF37]" animate={{ width: `${progress}%` }} transition={{ duration: 0.3 }} />
               </div>
+              {stepIndex === 0 && (
+                <p className="mt-4 flex items-center gap-2 text-sm text-gray-300">
+                  <Gift className="w-4 h-4 text-[#D4AF37] shrink-0" />
+                  Після відповідей — бонус: «Топ-30 помилок при виборі кухні» (PDF)
+                </p>
+              )}
             </div>
 
             <AnimatePresence mode="wait">
@@ -148,14 +217,28 @@ export default function Estimate() {
                 <motion.div key={step.key} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.2 }}>
                   <h1 className="text-2xl md:text-3xl font-serif text-white mb-2">{step.title}</h1>
                   {step.hint && <p className="text-sm text-gray-400 mb-6">{step.hint}</p>}
-                  <div className={`grid gap-3 ${step.hint ? '' : 'mt-6'}`}>
-                    {step.options.map((opt) => (
-                      <button key={opt} type="button" onClick={() => choose(opt)}
-                        className={`${optionBtn} ${answers[step.key] === opt ? 'border-[#D4AF37] text-white' : ''}`}>
-                        {opt}
+                  <div className={`grid gap-3 ${step.hint ? '' : 'mt-6'} ${hasImages ? 'grid-cols-2' : ''}`}>
+                    {step.options.map(({ label, image }) => (
+                      <button key={label} type="button" onClick={() => choose(label)}
+                        className={`relative text-left rounded-lg border overflow-hidden transition-colors ${isChosen(label) ? 'border-[#D4AF37] text-white bg-[#D4AF37]/10' : 'border-white/10 text-gray-200 bg-black/40 hover:border-[#D4AF37]'}`}>
+                        {image && <img src={image} alt={label} loading="lazy" className="w-full aspect-[4/3] object-cover" />}
+                        <span className={`flex items-center gap-3 ${image ? 'px-3 py-2 text-sm' : 'px-5 py-4'}`}>
+                          {step.multi && (
+                            <span className={`w-5 h-5 shrink-0 rounded border flex items-center justify-center ${isChosen(label) ? 'bg-[#D4AF37] border-[#D4AF37] text-[#1A1A1A]' : 'border-white/30'}`}>
+                              {isChosen(label) && <Check className="w-3.5 h-3.5" />}
+                            </span>
+                          )}
+                          {label}
+                        </span>
                       </button>
                     ))}
                   </div>
+                  {step.multi && (
+                    <button type="button" onClick={next} disabled={!canGoNext}
+                      className="mt-6 w-full h-12 rounded-lg bg-[#D4AF37] text-[#1A1A1A] font-medium flex items-center justify-center gap-2 disabled:opacity-40">
+                      Далі <ArrowRight className="w-4 h-4" />
+                    </button>
+                  )}
                 </motion.div>
               ) : (
                 <motion.form key="contact" onSubmit={handleSubmit} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.2 }} className="space-y-5">
@@ -164,7 +247,7 @@ export default function Estimate() {
                     <p className="text-sm text-gray-400">Порахую вартість і запропоную, як оптимізувати під ваш бюджет.</p>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     {CHANNELS.map(({ value, icon: Icon }) => (
                       <button key={value} type="button" onClick={() => setChannel(value)}
                         className={`flex flex-col items-center gap-1 rounded-lg border px-2 py-3 text-sm transition-colors ${channel === value ? 'border-[#D4AF37] text-[#D4AF37] bg-[#D4AF37]/10' : 'border-white/10 text-gray-300 bg-black/40'}`}>
@@ -184,7 +267,7 @@ export default function Estimate() {
                       className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-[#D4AF37]" />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="comments" className="block text-sm text-gray-300">Розміри або коментар <span className="text-gray-500">(можна пізніше в месенджері)</span></label>
+                    <label htmlFor="comments" className="block text-sm text-gray-300">Коментар <span className="text-gray-500">(розміри, проєкт чи фото — можна пізніше в месенджері)</span></label>
                     <textarea id="comments" name="comments" rows="3" placeholder="Напр.: стіна 3,2 м, кут 2,4 м, висота стелі 2,7 м"
                       className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-[#D4AF37] resize-none" />
                   </div>

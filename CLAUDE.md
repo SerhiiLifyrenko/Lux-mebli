@@ -46,7 +46,7 @@ React 19 + Vite 7 + Tailwind 4 (через `@tailwindcss/vite`), react-router-do
 - `src/data/contacts.js` — телефон, Viber, Telegram, Instagram; міняти контакти лише тут
 - `src/lib/pixel.js` — відправка подій Meta Pixel (`Contact` при кліку на телефон/месенджер)
 - `src/pages/Home.jsx` — головна, збирає блоки по порядку: Hero → Services → VideoCarousel → Team → Testimonials → ContactForm
-- `src/pages/Estimate.jsx` — `/estimate`, квіз розрахунку (кроки — масив `STEPS` на початку файлу; останній крок — контакти й вибір Viber/Telegram/дзвінок)
+- `src/pages/Estimate.jsx` — `/estimate`, квіз розрахунку за зразком квізу Сергія в adsquiz (кроки — масив `STEPS` на початку файлу: що замовляють (кілька) → стиль → для кухні: форма, довжина, що важливо, бюджет → коли → контакти з вибором Viber/Telegram/WhatsApp/дзвінок; після заявки — бонус `/top30errors.pdf`). Картинки варіантів — `public/quiz/`, поле `image` у варіанті; без картинки варіант показується текстом
 - `src/pages/Portfolio.jsx` — `/portfolio`, роботи «до/після» (масив проєктів на початку файлу)
 - `src/components/*.jsx` — блоки головної; дані (тексти, відео, команда, відгуки) лежать масивами на початку кожного файлу
 - `src/index.css` — тема: `--color-primary #D4AF37` (золото), фон `#1A1A1A`, шрифти Playfair Display (заголовки) / Inter
