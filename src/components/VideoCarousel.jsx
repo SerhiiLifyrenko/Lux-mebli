@@ -14,20 +14,20 @@ const videos = [
 export default function VideoCarousel() {
   const [activeVideo, setActiveVideo] = useState(null);
   const [hoveredIdx, setHoveredIdx] = useState(null);
-  const scrollContainerRef = useRef(null);
+  const trackRef = useRef(null);
+  const [active, setActive] = useState(0);
 
-  const scroll = (direction) => {
-    if (scrollContainerRef.current) {
-      const { scrollLeft, clientWidth } = scrollContainerRef.current;
-      const scrollTo = direction === 'left' 
-        ? scrollLeft - clientWidth * 0.75 
-        : scrollLeft + clientWidth * 0.75;
-      
-      scrollContainerRef.current.scrollTo({
-        left: scrollTo,
-        behavior: 'smooth'
-      });
-    }
+  const onScroll = () => {
+    const el = trackRef.current;
+    if (!el) return;
+    setActive(Math.round(el.scrollLeft / el.clientWidth));
+  };
+
+  const go = (idx) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const i = Math.max(0, Math.min(videos.length - 1, idx));
+    el.scrollTo({ left: i * el.clientWidth, behavior: 'smooth' });
   };
 
   return (
@@ -36,9 +36,9 @@ export default function VideoCarousel() {
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-[#FFD60A]/5 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute top-1/2 right-0 -translate-y-1/2 w-96 h-96 bg-[#FFD60A]/5 rounded-full blur-3xl pointer-events-none"></div>
 
-      <div className="container mx-auto px-4 md:px-6 relative group/slider">
+      <div className="container mx-auto px-4 md:px-6 relative">
         {/* Header (Centered) */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10 md:mb-12">
           <span className="inline-block py-1 px-3 rounded-full bg-[#FFD60A]/10 border border-[#FFD60A]/20 text-[#FFD60A] text-xs font-semibold uppercase tracking-wider mb-4">
             Живі огляди
           </span>
@@ -50,97 +50,88 @@ export default function VideoCarousel() {
           </p>
         </div>
 
-        {/* Video Slider Container wrapped with floating arrows */}
-        <div className="relative">
-          {/* Left Floating Arrow */}
-          <button 
-            onClick={() => scroll('left')}
-            className="absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/10 hover:border-[#FFD60A] text-white hover:text-[#FFD60A] flex items-center justify-center bg-black/75 hover:bg-black backdrop-blur-sm transition-all duration-300 active:scale-95 cursor-pointer opacity-80 md:opacity-0 md:group-hover/slider:opacity-100 flex shadow-2xl"
-            aria-label="Попередні відео"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-
-          {/* Right Floating Arrow */}
-          <button 
-            onClick={() => scroll('right')}
-            className="absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/10 hover:border-[#FFD60A] text-white hover:text-[#FFD60A] flex items-center justify-center bg-black/75 hover:bg-black backdrop-blur-sm transition-all duration-300 active:scale-95 cursor-pointer opacity-80 md:opacity-0 md:group-hover/slider:opacity-100 flex shadow-2xl"
-            aria-label="Наступні відео"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-
-          {/* Scroll Container */}
-          <div 
-            ref={scrollContainerRef}
-            className="flex overflow-x-auto pb-6 gap-6 snap-x hide-scrollbar" 
+        {/* Слайдер: одне відео на екран, свайп + стрілки й крапки знизу (як у відгуках) */}
+        <div className="relative max-w-[400px] mx-auto">
+          <div
+            ref={trackRef}
+            onScroll={onScroll}
+            className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-          {videos.map((video, idx) => (
-            <motion.div 
-              key={video.id}
-              className="min-w-[280px] sm:min-w-[300px] md:min-w-[320px] flex-shrink-0 snap-center group/card cursor-pointer"
-              onMouseEnter={() => setHoveredIdx(idx)}
-              onMouseLeave={() => setHoveredIdx(null)}
-              onClick={() => setActiveVideo(video)}
-              whileHover={{ y: -8 }}
-              transition={{ duration: 0.3 }}
-            >
-              {/* Vertical Card Frame mimicking high-end smartphone screen */}
-              <div className="relative aspect-[9/16] w-full rounded-2xl overflow-hidden bg-black border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)] group-hover/card:border-[#FFD60A]/50 transition-all duration-500">
-                {/* Silent Autoplay Video on Hover */}
-                <video 
-                  src={hoveredIdx === idx ? video.src : undefined}
-                  poster={video.poster}
-                  muted 
-                  loop 
-                  playsInline 
-                  preload="none"
-                  className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover/card:opacity-90 transition-opacity duration-500"
-                  ref={(el) => {
-                    if (el) {
-                      if (hoveredIdx === idx) {
-                        el.play().catch(() => {});
-                      } else {
-                        el.pause();
-                        el.currentTime = 0;
+            {videos.map((video, idx) => (
+              <div key={video.id} className="w-full shrink-0 snap-center px-1">
+                <div
+                  className="relative aspect-[9/16] w-full rounded-2xl overflow-hidden bg-black border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)] cursor-pointer group/card"
+                  onMouseEnter={() => setHoveredIdx(idx)}
+                  onMouseLeave={() => setHoveredIdx(null)}
+                  onClick={() => setActiveVideo(video)}
+                >
+                  <video
+                    src={hoveredIdx === idx ? video.src : undefined}
+                    poster={video.poster}
+                    muted
+                    loop
+                    playsInline
+                    preload="none"
+                    className="absolute inset-0 w-full h-full object-cover brightness-125 contrast-105"
+                    ref={(el) => {
+                      if (el) {
+                        if (hoveredIdx === idx) {
+                          el.play().catch(() => {});
+                        } else {
+                          el.pause();
+                          el.currentTime = 0;
+                        }
                       }
-                    }
-                  }}
-                />
+                    }}
+                  />
 
-                {/* Dark Vignette Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/40 mix-blend-multiply"></div>
+                  {/* Затемнення лише внизу — щоб читався підпис */}
+                  <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none"></div>
 
-                {/* Animated Pulsing Play Button Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="w-14 h-14 rounded-full bg-[#FFD60A] text-[#1A1A1A] flex items-center justify-center shadow-[0_0_25px_rgba(255,214,10,0.4)] transform scale-90 group-hover/card:scale-100 group-hover/card:rotate-6 transition-all duration-500">
-                    <Play className="w-6 h-6 fill-current translate-x-0.5" />
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div className="w-16 h-16 rounded-full bg-[#FFD60A] text-[#1A1A1A] flex items-center justify-center shadow-[0_0_25px_rgba(255,214,10,0.5)] transition-transform duration-300 group-hover/card:scale-110">
+                      <Play className="w-7 h-7 fill-current translate-x-0.5" />
+                    </div>
+                  </div>
+
+                  <div className="absolute top-4 left-4 z-10">
+                    <span className="bg-[#FFD60A] text-[#1A1A1A] text-[11px] font-bold py-1 px-3 rounded-full uppercase tracking-wider shadow">
+                      Проект #{video.id}
+                    </span>
+                  </div>
+
+                  <div className="absolute bottom-0 inset-x-0 p-6 z-10 flex flex-col justify-end pointer-events-none">
+                    <h3 className="text-xl font-bold text-white mb-1.5 font-serif leading-tight drop-shadow">
+                      {video.title}
+                    </h3>
+                    <p className="text-gray-100 text-sm leading-snug drop-shadow">
+                      {video.desc}
+                    </p>
                   </div>
                 </div>
-
-                {/* Floating Tags/Labels */}
-                <div className="absolute top-4 left-4 z-10">
-                  <span className="bg-[#FFD60A]/90 text-[#1A1A1A] text-[10px] font-bold py-1 px-2.5 rounded-full uppercase tracking-wider shadow">
-                    Проект #{video.id}
-                  </span>
-                </div>
-
-                {/* Bottom Info Details */}
-                <div className="absolute bottom-0 inset-x-0 p-6 z-10 flex flex-col justify-end">
-                  <h3 className="text-lg font-bold text-white mb-2 font-serif group-hover/card:text-[#FFD60A] transition-colors leading-tight">
-                    {video.title}
-                  </h3>
-                  <p className="text-gray-300 text-xs leading-normal opacity-90 line-clamp-2">
-                    {video.desc}
-                  </p>
-                </div>
               </div>
-            </motion.div>
-          ))}
+            ))}
+          </div>
+
+          <div className="flex items-center justify-center gap-4 mt-6">
+            <button type="button" onClick={() => go(active - 1)} disabled={active === 0} aria-label="Попереднє відео"
+              className="w-11 h-11 rounded-full border border-white/20 text-white flex items-center justify-center disabled:opacity-30 hover:border-[#FFD60A] hover:text-[#FFD60A] transition-colors">
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <div className="flex items-center gap-2">
+              {videos.map((v, idx) => (
+                <button key={v.id} type="button" onClick={() => go(idx)} aria-label={`Відео ${idx + 1}`}
+                  className={`h-2 rounded-full transition-all ${idx === active ? 'w-6 bg-[#FFD60A]' : 'w-2 bg-white/30'}`} />
+              ))}
+            </div>
+            <button type="button" onClick={() => go(active + 1)} disabled={active === videos.length - 1} aria-label="Наступне відео"
+              className="w-11 h-11 rounded-full border border-white/20 text-white flex items-center justify-center disabled:opacity-30 hover:border-[#FFD60A] hover:text-[#FFD60A] transition-colors">
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
         </div>
       </div>
-    </div>
 
       {/* Premium Fullscreen Lightbox Player */}
       <AnimatePresence>
