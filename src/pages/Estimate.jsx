@@ -174,7 +174,7 @@ export default function Estimate() {
 
 
   return (
-    <div className="min-h-screen pt-24 pb-16 px-4 flex flex-col items-center">
+    <div className="min-h-screen pt-20 md:pt-24 pb-16 px-3 md:px-4 flex flex-col items-center">
       <div className={`w-full ${hasImages && !isContactStep ? 'max-w-3xl' : 'max-w-2xl'} mb-6 flex items-center`}>
         <Link to="/" className="text-gray-400 hover:text-[#D4AF37] transition-colors flex items-center gap-2 group">
           <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
@@ -182,7 +182,7 @@ export default function Estimate() {
         </Link>
       </div>
 
-      <div className={`w-full ${hasImages && !isContactStep ? 'max-w-3xl' : 'max-w-2xl'} bg-[#1A1A1A] border border-white/10 rounded-2xl p-6 md:p-10 shadow-2xl`}>
+      <div className={`w-full ${hasImages && !isContactStep ? 'max-w-3xl' : 'max-w-2xl'} md:bg-[#1A1A1A] md:border md:border-white/10 md:rounded-2xl px-1 py-2 md:p-10 md:shadow-2xl`}>
         {status === 'success' ? (
           <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-6">
             <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -224,11 +224,11 @@ export default function Estimate() {
                 <motion.div key={step.key} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.2 }}>
                   <h1 className="text-2xl md:text-3xl font-serif text-white mb-2">{step.title}</h1>
                   {step.hint && <p className="text-sm text-gray-400 mb-6">{step.hint}</p>}
-                  <div className={`grid gap-3 ${step.hint ? '' : 'mt-6'} ${hasImages ? 'grid-cols-2 md:grid-cols-3' : ''}`}>
+                  <div className={`grid gap-2.5 md:gap-3 ${step.hint ? '' : 'mt-6'} ${hasImages ? 'grid-cols-2 md:grid-cols-3' : ''}`}>
                     {step.options.map(({ label, image }) => (
                       <button key={label} type="button" onClick={() => choose(label)}
                         className={`relative flex flex-col justify-start text-left rounded-lg border overflow-hidden transition-colors ${isChosen(label) ? 'border-[#D4AF37] text-white bg-[#D4AF37]/10' : 'border-white/10 text-gray-200 bg-black/40 hover:border-[#D4AF37]'}`}>
-                        {image && <img src={image} alt="" className={step.imageFit === 'contain' ? 'w-full aspect-square object-contain bg-white' : 'w-full aspect-[4/3] object-cover'} />}
+                        {image && <img src={image} alt="" className={step.imageFit === 'contain' ? 'w-full aspect-square object-contain bg-white' : 'w-full aspect-square object-cover'} />}
                         <span className={`flex items-center gap-3 ${image ? 'px-3 py-2 text-sm' : 'px-5 py-4'}`}>
                           {step.multi && (
                             <span className={`w-5 h-5 shrink-0 rounded border flex items-center justify-center ${isChosen(label) ? 'bg-[#D4AF37] border-[#D4AF37] text-[#1A1A1A]' : 'border-white/30'}`}>
@@ -242,7 +242,7 @@ export default function Estimate() {
                   </div>
                   {step.multi && (
                     <button type="button" onClick={next} disabled={!canGoNext}
-                      className="mt-6 w-full h-12 rounded-lg bg-[#D4AF37] text-[#1A1A1A] font-medium flex items-center justify-center gap-2 disabled:opacity-40">
+                      className="sticky bottom-20 md:static mt-6 w-full h-12 rounded-lg bg-[#D4AF37] text-[#1A1A1A] font-medium flex items-center justify-center gap-2 shadow-[0_-8px_24px_rgba(0,0,0,0.6)] md:shadow-none disabled:opacity-40 disabled:bg-[#5a4c1f] disabled:text-gray-300">
                       Далі <ArrowRight className="w-4 h-4" />
                     </button>
                   )}
