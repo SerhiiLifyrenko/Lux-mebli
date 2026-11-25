@@ -77,7 +77,7 @@ export default function ContactForm() {
               Замовити консультацію
             </h2>
             <p className="text-gray-400 mb-8 max-w-sm">
-              Ми підготуємо <span className="text-[#D4AF37]">3 варіанти бюджету</span> за 30 хвилин. Ваша ціна буде зафіксована у договорі.
+              Ми підготуємо <span className="text-[#FFD60A]">3 варіанти бюджету</span> за 30 хвилин. Ваша ціна буде зафіксована у договорі.
             </p>
             
             {formStatus === 'success' ? (
@@ -102,7 +102,7 @@ export default function ContactForm() {
                     type="text" 
                     id="name" 
                     name="name"
-                    className="w-full px-4 py-3 bg-[#1A1A1A] border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent text-white transition-all"
+                    className="w-full px-4 py-3 bg-[#1A1A1A] border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FFD60A] focus:border-transparent text-white transition-all"
                     placeholder="Ваше ім'я"
                     required
                   />
@@ -114,7 +114,7 @@ export default function ContactForm() {
                     type="tel" 
                     id="phone" 
                     name="phone"
-                    className="w-full px-4 py-3 bg-[#1A1A1A] border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent text-white transition-all"
+                    className="w-full px-4 py-3 bg-[#1A1A1A] border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FFD60A] focus:border-transparent text-white transition-all"
                     placeholder="+380 (__) ___ __ __"
                     required
                   />
@@ -125,7 +125,7 @@ export default function ContactForm() {
                   <select 
                     id="type" 
                     name="type"
-                    className="w-full px-4 py-3 bg-[#1A1A1A] border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent text-gray-300 transition-all appearance-none"
+                    className="w-full px-4 py-3 bg-[#1A1A1A] border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FFD60A] focus:border-transparent text-gray-300 transition-all appearance-none"
                   >
                     <option value="kitchen">Кухня</option>
                     <option value="wardrobe">Гардеробна</option>
@@ -146,7 +146,7 @@ export default function ContactForm() {
                 <button 
                   type="submit" 
                   disabled={formStatus === 'submitting'}
-                  className="w-full bg-[#D4AF37] hover:bg-[#c19b28] text-[#1A1A1A] font-bold py-4 px-6 rounded-md transition-all duration-300 mt-4 shadow-[0_0_15px_rgba(212,175,55,0.2)] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center h-[56px]"
+                  className="w-full bg-[#FFD60A] hover:bg-[#E6C000] text-[#1A1A1A] font-bold py-4 px-6 rounded-md transition-all duration-300 mt-4 shadow-[0_0_15px_rgba(255,214,10,0.2)] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center h-[56px]"
                 >
                   {formStatus === 'submitting' ? (
                      <div className="w-6 h-6 border-2 border-[#1A1A1A] border-t-transparent rounded-full animate-spin"></div>
@@ -184,21 +184,21 @@ export default function ContactForm() {
                 
                 <ul className="space-y-6">
                   <li className="flex gap-4">
-                    <div className="shrink-0 w-8 h-8 rounded-full bg-[#D4AF37]/20 flex items-center justify-center text-[#D4AF37] font-bold">1</div>
+                    <div className="shrink-0 w-8 h-8 rounded-full bg-[#FFD60A]/20 flex items-center justify-center text-[#FFD60A] font-bold">1</div>
                     <div>
                       <h4 className="font-semibold text-white">Точний розрахунок</h4>
                       <p className="text-sm text-gray-400 mt-1">Три варіанти бюджету: базовий, оптимальний та преміум.</p>
                     </div>
                   </li>
                   <li className="flex gap-4">
-                    <div className="shrink-0 w-8 h-8 rounded-full bg-[#D4AF37]/20 flex items-center justify-center text-[#D4AF37] font-bold">2</div>
+                    <div className="shrink-0 w-8 h-8 rounded-full bg-[#FFD60A]/20 flex items-center justify-center text-[#FFD60A] font-bold">2</div>
                     <div>
                       <h4 className="font-semibold text-white">Відповіді технолога</h4>
                       <p className="text-sm text-gray-400 mt-1">Оцінка ваших креслень та рекомендації щодо матеріалів.</p>
                     </div>
                   </li>
                   <li className="flex gap-4">
-                    <div className="shrink-0 w-8 h-8 rounded-full bg-[#D4AF37]/20 flex items-center justify-center text-[#D4AF37] font-bold">3</div>
+                    <div className="shrink-0 w-8 h-8 rounded-full bg-[#FFD60A]/20 flex items-center justify-center text-[#FFD60A] font-bold">3</div>
                     <div>
                       <h4 className="font-semibold text-white">Фіксація умов</h4>
                       <p className="text-sm text-gray-400 mt-1">Бронювання поточної ціни та термінів монтажу.</p>
@@ -215,7 +215,7 @@ export default function ContactForm() {
                   <img loading="lazy" src="/media__1773314466275.jpg" alt="Сергій" className="w-10 h-10 rounded-full object-cover object-[center_22%]" />
                   <div>
                     <h5 className="font-medium text-white text-sm">Сергій</h5>
-                    <p className="text-xs text-[#D4AF37]">Засновник</p>
+                    <p className="text-xs text-[#FFD60A]">Засновник</p>
                   </div>
                 </div>
               </div>

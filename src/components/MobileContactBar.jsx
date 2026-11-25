@@ -6,7 +6,7 @@ import { track } from '../lib/pixel';
 
 const contact = (channel) => () => track('Contact', { content_name: channel });
 
-const iconBtn = 'flex flex-col items-center justify-center gap-0.5 text-gray-300 active:text-[#D4AF37] text-[11px] min-w-[56px] h-full';
+const iconBtn = 'flex flex-col items-center justify-center gap-0.5 text-gray-300 active:text-[#FFD60A] text-[11px] min-w-[56px] h-full';
 
 // Липка панель зв'язку внизу екрана — тільки на телефоні
 export default function MobileContactBar() {
@@ -26,7 +26,7 @@ export default function MobileContactBar() {
           <Send className="w-5 h-5" />Telegram
         </a>
         {!onEstimate && (
-          <Link to="/estimate" className="flex-1 ml-1 h-11 flex items-center justify-center rounded-md bg-[#D4AF37] text-[#1A1A1A] font-medium text-sm">
+          <Link to="/estimate" className="flex-1 ml-1 h-11 flex items-center justify-center rounded-md bg-[#FFD60A] text-[#1A1A1A] font-medium text-sm">
             Прорахунок
           </Link>
         )}

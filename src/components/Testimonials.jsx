@@ -49,7 +49,7 @@ export default function Testimonials() {
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <h2 className="text-3xl md:text-5xl font-bold font-serif text-white mb-6">
-            Що пишуть <span className="text-[#D4AF37]">наші клієнти</span>
+            Що пишуть <span className="text-[#FFD60A]">наші клієнти</span>
           </h2>
           <p className="text-gray-400 text-lg">
             Справжні повідомлення, які нам надсилають у Direct після встановлення меблів.
@@ -68,7 +68,7 @@ export default function Testimonials() {
             <div key={idx} className="min-w-[320px] md:min-w-[400px] flex-shrink-0 snap-center bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col">
               
               <div className="mb-6 flex gap-2">
-                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-[#D4AF37]/15 text-[#8A6D1F] text-xs font-medium">
+                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-[#FFD60A]/15 text-[#8A6D1F] text-xs font-medium">
                   <CheckCircle className="w-3.5 h-3.5" />
                   {review.product}
                 </span>
@@ -79,7 +79,7 @@ export default function Testimonials() {
               </p>
               
               <div className="flex items-center gap-3 mt-auto">
-                <div className="w-10 h-10 rounded-full bg-[#D4AF37]/15 flex items-center justify-center text-[#B8962E]">
+                <div className="w-10 h-10 rounded-full bg-[#FFD60A]/15 flex items-center justify-center text-[#B8962E]">
                   <MessageCircle className="w-5 h-5" />
                 </div>
                 <div>
@@ -92,7 +92,7 @@ export default function Testimonials() {
         </motion.div>
 
         <div className="text-center mt-2">
-          <a href={REVIEWS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[#D4AF37] hover:text-white font-medium transition-colors">
+          <a href={REVIEWS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[#FFD60A] hover:text-white font-medium transition-colors">
             Усі відгуки в нашому Instagram →
           </a>
         </div>
