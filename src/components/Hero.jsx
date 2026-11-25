@@ -24,7 +24,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden pt-16 pb-24 md:pt-0 md:pb-0">
+    <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden pt-24 pb-16 md:pt-24 md:pb-12">
       {/* Background with overlay */}
       <motion.div 
         initial={{ scale: 1.1, opacity: 0 }}
@@ -43,48 +43,42 @@ export default function Hero() {
         className="relative z-10 container mx-auto px-4 md:px-6 flex flex-col items-center text-center"
       >
         <motion.div variants={itemVariants} className="inline-block py-1 px-3 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/30 text-[#D4AF37] text-sm font-medium mb-6 tracking-wide">
-          Преміальні меблі на замовлення
+          Тернопіль і область · меблі на замовлення
         </motion.div>
-        
-        <motion.h1 variants={itemVariants} className="text-5xl md:text-6xl lg:text-8xl font-bold text-white mb-4 tracking-tight font-serif">
-          Lux Kitchen
+
+        <motion.h1 variants={itemVariants} className="text-[2rem] sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight font-serif max-w-5xl leading-tight">
+          Кухня під ваш бюджет — <span className="text-[#D4AF37]">з ціною, яка не зростає</span> після підписання
         </motion.h1>
-        
-        <motion.p variants={itemVariants} className="text-xl md:text-2xl lg:text-3xl text-[#D4AF37] font-serif font-semibold mb-6 max-w-5xl leading-relaxed">
-          Європейська якість матеріалів, австрійська фурнітура, німецька точність, українська майстерність.
+
+        <motion.p variants={itemVariants} className="text-lg md:text-xl text-gray-300 mb-10 max-w-3xl font-sans leading-relaxed">
+          Порахую вартість вашої кухні й покажу, де можна заощадити, не жертвуючи тим, чим ви користуєтеся щодня. Ціна й дата монтажу — в договорі.
         </motion.p>
-        
-        <motion.p variants={itemVariants} className="text-lg md:text-xl text-gray-300 mb-10 max-w-3xl font-sans tracking-wide font-light">
-          Кухня на все життя. Без компромісів.
-        </motion.p>
-        
+
         <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
           <Link to="/estimate" className="bg-[#D4AF37] hover:bg-[#c19b28] text-[#1A1A1A] font-medium py-4 px-8 rounded-md transition-all duration-300 transform hover:scale-105 shadow-[0_0_20px_rgba(212,175,55,0.3)] text-center">
-            Отримати розрахунок у 3-х варіантах бюджету
+            Розрахувати вартість моєї кухні
           </Link>
           <Link to="/portfolio" className="bg-transparent hover:bg-white/10 text-white border border-white/30 font-medium py-4 px-8 rounded-md transition-all duration-300 text-center">
-            Переглянути портфоліо
+            Подивитися роботи
           </Link>
         </motion.div>
-        
-        {/* Features banner */}
-        <motion.div variants={itemVariants} className="mt-8 sm:mt-24 grid grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-5xl border-t border-white/10 pt-8">
-          <div className="flex flex-col items-center text-center group">
-            <span className="text-3xl font-bold text-[#D4AF37] mb-2 font-serif group-hover:scale-110 transition-transform">100%</span>
-            <span className="text-sm text-gray-400">Фіксована ціна</span>
-          </div>
-          <div className="flex flex-col items-center text-center group">
-            <span className="text-3xl font-bold text-[#D4AF37] mb-2 font-serif group-hover:scale-110 transition-transform">Е0</span>
-            <span className="text-sm text-gray-400">Екологічні матеріали</span>
-          </div>
-          <div className="flex flex-col items-center text-center group">
-            <span className="text-3xl font-bold text-[#D4AF37] mb-2 font-serif group-hover:scale-110 transition-transform">200k</span>
-            <span className="text-sm text-gray-400">Циклів фурнітури</span>
-          </div>
-          <div className="flex flex-col items-center text-center group">
-            <span className="text-3xl font-bold text-[#D4AF37] mb-2 font-serif group-hover:scale-110 transition-transform">0</span>
-            <span className="text-sm text-gray-400">Прихованих платежів</span>
-          </div>
+        <motion.p variants={itemVariants} className="mt-4 text-sm text-gray-400">
+          2 хвилини · відповідь у месенджер · бонус «Топ-30 помилок при виборі кухні»
+        </motion.p>
+
+        {/* Аргументи — лише підтверджені факти (див. «Факти бізнесу») */}
+        <motion.div variants={itemVariants} className="mt-10 sm:mt-16 grid grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-5xl border-t border-white/10 pt-8">
+          {[
+            ['0 грн', 'доплат після підписання — ціна фіксована в договорі'],
+            ['6–8 тижнів', 'від договору до монтажу, дата — в договорі'],
+            ['Blum', 'уся фурнітура: ящики, петлі, підйомники'],
+            ['ФОП', 'офіційний договір і оплата на рахунок'],
+          ].map(([value, label]) => (
+            <div key={value} className="flex flex-col items-center text-center">
+              <span className="text-2xl md:text-3xl font-bold text-[#D4AF37] mb-2 font-serif">{value}</span>
+              <span className="text-sm text-gray-400 max-w-[14rem]">{label}</span>
+            </div>
+          ))}
         </motion.div>
       </motion.div>
     </section>

@@ -46,7 +46,7 @@ React 19 + Vite 7 + Tailwind 4 (через `@tailwindcss/vite`), react-router-do
 - `src/data/contacts.js` — телефон, Viber, Telegram, Instagram; міняти контакти лише тут
 - `src/lib/pixel.js` — відправка подій Meta Pixel (`Contact` при кліку на телефон/месенджер)
 - `src/pages/Home.jsx` — головна, збирає блоки по порядку: Hero → Services → VideoCarousel → Team → Testimonials → ContactForm
-- `src/pages/Estimate.jsx` — `/estimate`, форма прорахунку
+- `src/pages/Estimate.jsx` — `/estimate`, квіз розрахунку за зразком квізу Сергія в adsquiz (кроки — масив `STEPS` на початку файлу: що замовляють (кілька) → стиль → для кухні: форма, довжина, що важливо, бюджет → коли → контакти з вибором Viber/Telegram/WhatsApp/дзвінок; після заявки — бонус `/top30errors.pdf`). Картинки варіантів — `public/quiz/`, поле `image` у варіанті; без картинки варіант показується текстом
 - `src/pages/Portfolio.jsx` — `/portfolio`, роботи «до/після» (масив проєктів на початку файлу)
 - `src/components/*.jsx` — блоки головної; дані (тексти, відео, команда, відгуки) лежать масивами на початку кожного файлу
 - `src/index.css` — тема: `--color-primary #D4AF37` (золото), фон `#1A1A1A`, шрифти Playfair Display (заголовки) / Inter
@@ -54,7 +54,7 @@ React 19 + Vite 7 + Tailwind 4 (через `@tailwindcss/vite`), react-router-do
 - `vercel.json` — переадресація всіх адрес на React (щоб /estimate тощо не давали 404)
 
 ## Форми
-ContactForm і Estimate відправляють заявки через Web3Forms (`api.web3forms.com/submit`, ключ у коді — він публічний за задумом сервісу).
+ContactForm і квіз (Estimate) відправляють заявки через Web3Forms (`api.web3forms.com/submit`, ключ у коді — він публічний за задумом сервісу) на пошту Сергія. Квіз шле українську тему й поля.
 
 ## Залишки, не чіпати без запиту
 `temp.js` (зламаний чернетковий скрипт), `src/App.css` і `src/assets/react.svg` (не використовуються). Видаляти лише з дозволу Сергія.
@@ -66,5 +66,5 @@ ContactForm і Estimate відправляють заявки через Web3For
 - Перед пушем — `npm run build`. Після push — `git fetch` цієї гілки.
 - PR і злиття — через `gh api` (REST), GraphQL у сесії заблокований.
 - Фото від Сергія стискати до ~300 КБ.
-- Результат — одним повідомленням: що змінено (1–3 рядки), посилання на PR і Preview від Vercel (з коментаря бота у PR). На «зливай» — злити PR і підтвердити одним рядком.
+- Результат — одним повідомленням: що змінено (1–3 рядки), посилання на PR і Preview від Vercel (з коментаря бота у PR). На «зливай» / «заливай» — злити PR і підтвердити одним рядком.
 - Змінилась структура сайту (нова сторінка/блок) — оновити цей файл у тому ж PR.
