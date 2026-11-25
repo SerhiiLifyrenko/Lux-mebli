@@ -188,7 +188,7 @@ export default function Estimate() {
   return (
     <div className="min-h-screen pt-20 md:pt-24 pb-16 px-3 md:px-4 flex flex-col items-center">
       <div className={`w-full ${hasImages && !isContactStep ? 'max-w-3xl' : 'max-w-2xl'} mb-6 flex items-center`}>
-        <Link to="/" className="text-gray-400 hover:text-[#D4AF37] transition-colors flex items-center gap-2 group">
+        <Link to="/" className="text-gray-400 hover:text-[#FFD60A] transition-colors flex items-center gap-2 group">
           <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
           <span>На головну</span>
         </Link>
@@ -207,11 +207,11 @@ export default function Estimate() {
                 : `Напишу вам у ${channel}, уточню розміри й надішлю розрахунок вартості з варіантами, як вкластися у ваш бюджет.`}
             </p>
             <a href={BONUS_PDF} target="_blank" rel="noopener noreferrer" onClick={() => track('ViewContent', { content_name: 'bonus_top30' })}
-              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto bg-[#D4AF37] hover:bg-[#c19b28] text-[#1A1A1A] font-medium py-4 px-8 rounded-lg mb-6">
+              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto bg-[#FFD60A] hover:bg-[#E6C000] text-[#1A1A1A] font-medium py-4 px-8 rounded-lg mb-6">
               <Gift className="w-5 h-5" /> Завантажити бонус: Топ-30 помилок
             </a>
             <div>
-              <a href={contacts.instagramHref} target="_blank" rel="noopener noreferrer" className="text-[#D4AF37] hover:underline">
+              <a href={contacts.instagramHref} target="_blank" rel="noopener noreferrer" className="text-[#FFD60A] hover:underline">
                 Поки чекаєте — наші роботи в Instagram {contacts.instagramHandle}
               </a>
             </div>
@@ -225,7 +225,7 @@ export default function Estimate() {
               </div>
               {stepIndex === 0 && (
                 <p className="mt-4 flex items-center gap-2 text-sm text-[#FFF1BF]">
-                  <Gift className="w-4 h-4 text-[#D4AF37] shrink-0" />
+                  <Gift className="w-4 h-4 text-[#FFD60A] shrink-0" />
                   Після відповідей — бонус: «Топ-30 помилок при виборі кухні» (PDF)
                 </p>
               )}
@@ -243,7 +243,7 @@ export default function Estimate() {
                         {image && <img src={image} alt="" className={step.imageFit === 'contain' ? 'w-full aspect-square object-contain bg-white' : 'w-full aspect-square object-cover'} />}
                         <span className={`flex items-center gap-3 ${image ? 'px-3 py-2 text-sm' : 'px-5 py-4'}`}>
                           {step.multi && (
-                            <span className={`w-5 h-5 shrink-0 rounded border flex items-center justify-center ${isChosen(label) ? 'bg-[#D4AF37] border-[#D4AF37] text-[#1A1A1A]' : 'border-white/30'}`}>
+                            <span className={`w-5 h-5 shrink-0 rounded border flex items-center justify-center ${isChosen(label) ? 'bg-[#FFD60A] border-[#FFD60A] text-[#1A1A1A]' : 'border-white/30'}`}>
                               {isChosen(label) && <Check className="w-3.5 h-3.5" />}
                             </span>
                           )}
@@ -254,7 +254,7 @@ export default function Estimate() {
                   </div>
                   {step.multi && canGoNext && (
                     <button type="button" onClick={next}
-                      className="sticky bottom-20 md:static mt-6 w-full h-12 rounded-lg bg-[#D4AF37] text-[#1A1A1A] font-medium flex items-center justify-center gap-2 shadow-[0_-8px_24px_rgba(0,0,0,0.6)] md:shadow-none">
+                      className="sticky bottom-20 md:static mt-6 w-full h-12 rounded-lg bg-[#FFD60A] text-[#1A1A1A] font-medium flex items-center justify-center gap-2 shadow-[0_-8px_24px_rgba(0,0,0,0.6)] md:shadow-none">
                       Далі <ArrowRight className="w-4 h-4" />
                     </button>
                   )}
@@ -269,7 +269,7 @@ export default function Estimate() {
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     {CHANNELS.map(({ value, icon: Icon }) => (
                       <button key={value} type="button" onClick={() => setChannel(value)}
-                        className={`flex flex-col items-center gap-1 rounded-lg border px-2 py-3 text-sm transition-colors ${channel === value ? 'border-[#D4AF37] text-[#D4AF37] bg-[#D4AF37]/10' : 'border-white/10 text-gray-300 bg-black/40'}`}>
+                        className={`flex flex-col items-center gap-1 rounded-lg border px-2 py-3 text-sm transition-colors ${channel === value ? 'border-[#FFD60A] text-[#FFD60A] bg-[#FFD60A]/10' : 'border-white/10 text-gray-300 bg-black/40'}`}>
                         <Icon className="w-5 h-5" />{value}
                       </button>
                     ))}
@@ -278,17 +278,17 @@ export default function Estimate() {
                   <div className="space-y-2">
                     <label htmlFor="name" className="block text-sm text-gray-300">Ваше ім'я</label>
                     <input id="name" name="name" type="text" required autoComplete="name"
-                      className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#D4AF37]" />
+                      className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#FFD60A]" />
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="phone" className="block text-sm text-gray-300">Номер телефону {channel !== 'Подзвоніть' && `(для ${channel})`}</label>
                     <input id="phone" name="phone" type="tel" required autoComplete="tel" placeholder="0__ ___ __ __"
-                      className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-[#D4AF37]" />
+                      className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-[#FFD60A]" />
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="comments" className="block text-sm text-gray-300">Коментар <span className="text-gray-500">(розміри, проєкт чи фото — можна пізніше в месенджері)</span></label>
                     <textarea id="comments" name="comments" rows="3" placeholder="Напр.: стіна 3,2 м, кут 2,4 м, висота стелі 2,7 м"
-                      className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-[#D4AF37] resize-none" />
+                      className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-[#FFD60A] resize-none" />
                   </div>
 
                   {status === 'error' && (
@@ -299,7 +299,7 @@ export default function Estimate() {
                   )}
 
                   <button type="submit" disabled={status === 'submitting'}
-                    className="w-full h-14 bg-[#D4AF37] hover:bg-[#c19b28] text-[#1A1A1A] font-medium rounded-lg transition-colors disabled:opacity-70 flex items-center justify-center">
+                    className="w-full h-14 bg-[#FFD60A] hover:bg-[#E6C000] text-[#1A1A1A] font-medium rounded-lg transition-colors disabled:opacity-70 flex items-center justify-center">
                     {status === 'submitting'
                       ? <span className="w-6 h-6 border-2 border-[#1A1A1A] border-t-transparent rounded-full animate-spin" />
                       : 'Отримати розрахунок'}
@@ -310,7 +310,7 @@ export default function Estimate() {
             </AnimatePresence>
 
             {stepIndex > 0 && (
-              <button type="button" onClick={back} className="mt-6 text-sm text-gray-400 hover:text-[#D4AF37] flex items-center gap-1">
+              <button type="button" onClick={back} className="mt-6 text-sm text-gray-400 hover:text-[#FFD60A] flex items-center gap-1">
                 <ArrowLeft className="w-4 h-4" /> Назад
               </button>
             )}

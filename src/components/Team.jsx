@@ -58,7 +58,7 @@ export default function Team() {
       >
         <motion.div variants={itemVariants} className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-5xl font-bold font-serif text-white mb-6">
-            Команда, яка несе <span className="text-[#D4AF37]">особисту відповідальність</span>
+            Команда, яка несе <span className="text-[#FFD60A]">особисту відповідальність</span>
           </h2>
           <p className="text-gray-400 text-lg">
             Ваші меблі створюють не випадкові найманці, а експерти з багаторічним досвідом та ідеальним рейтингом.
@@ -67,7 +67,7 @@ export default function Team() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {team.map((member, idx) => (
-            <motion.div variants={itemVariants} key={idx} className="group relative overflow-hidden rounded-xl bg-[#111111] border border-white/5 hover:border-[#D4AF37]/50 transition-colors duration-500">
+            <motion.div variants={itemVariants} key={idx} className="group relative overflow-hidden rounded-xl bg-[#111111] border border-white/5 hover:border-[#FFD60A]/50 transition-colors duration-500">
               <div className="aspect-[3/4] overflow-hidden">
                 <img loading="lazy"
                   src={member.image} 
@@ -78,7 +78,7 @@ export default function Team() {
               <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/85 to-transparent opacity-45 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
                 <div className="relative z-10 transform translate-y-0 md:translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                   <h3 className="text-2xl font-bold text-white mb-1 font-serif">{member.name}</h3>
-                  <p className="text-[#D4AF37] font-medium mb-4 text-sm uppercase tracking-wider">{member.role}</p>
+                  <p className="text-[#FFD60A] font-medium mb-4 text-sm uppercase tracking-wider">{member.role}</p>
                   <p className="text-gray-300 text-sm leading-relaxed opacity-100 h-auto md:opacity-0 md:h-0 group-hover:opacity-100 group-hover:h-auto transition-all duration-500 delay-100 pb-4">
                     {member.bio}
                   </p>

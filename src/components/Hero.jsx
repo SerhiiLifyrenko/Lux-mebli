@@ -42,12 +42,12 @@ export default function Hero() {
         animate="visible"
         className="relative z-10 container mx-auto px-4 md:px-6 flex flex-col items-center text-center"
       >
-        <motion.div variants={itemVariants} className="inline-block py-1 px-3 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/30 text-[#D4AF37] text-sm font-medium mb-6 tracking-wide">
+        <motion.div variants={itemVariants} className="inline-block py-1 px-3 rounded-full bg-[#FFD60A]/20 border border-[#FFD60A]/30 text-[#FFD60A] text-sm font-medium mb-6 tracking-wide">
           Тернопіль і область · меблі на замовлення
         </motion.div>
 
         <motion.h1 variants={itemVariants} className="text-[2rem] sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight font-serif max-w-5xl leading-tight">
-          Кухня під ваш бюджет — <span className="text-[#D4AF37]">з ціною, яка не зростає</span> після підписання
+          Кухня під ваш бюджет — <span className="text-[#FFD60A]">з ціною, яка не зростає</span> після підписання
         </motion.h1>
 
         <motion.p variants={itemVariants} className="text-lg md:text-xl text-gray-300 mb-10 max-w-3xl font-sans leading-relaxed">
@@ -55,7 +55,7 @@ export default function Hero() {
         </motion.p>
 
         <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-          <Link to="/estimate" className="bg-[#D4AF37] hover:bg-[#c19b28] text-[#1A1A1A] font-medium py-4 px-8 rounded-md transition-all duration-300 transform hover:scale-105 shadow-[0_0_20px_rgba(212,175,55,0.3)] text-center">
+          <Link to="/estimate" className="bg-[#FFD60A] hover:bg-[#E6C000] text-[#1A1A1A] font-medium py-4 px-8 rounded-md transition-all duration-300 transform hover:scale-105 shadow-[0_0_20px_rgba(255,214,10,0.3)] text-center">
             Розрахувати вартість моєї кухні
           </Link>
           <Link to="/portfolio" className="bg-transparent hover:bg-white/10 text-white border border-white/30 font-medium py-4 px-8 rounded-md transition-all duration-300 text-center">
@@ -75,7 +75,7 @@ export default function Hero() {
             ['ФОП', 'офіційний договір і оплата на рахунок'],
           ].map(([value, label]) => (
             <div key={value} className="flex flex-col items-center text-center">
-              <span className="text-2xl md:text-3xl font-bold text-[#D4AF37] mb-2 font-serif">{value}</span>
+              <span className="text-2xl md:text-3xl font-bold text-[#FFD60A] mb-2 font-serif">{value}</span>
               <span className="text-sm text-gray-400 max-w-[14rem]">{label}</span>
             </div>
           ))}
