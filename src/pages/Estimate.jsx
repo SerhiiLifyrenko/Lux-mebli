@@ -9,6 +9,7 @@ import { contacts } from '../data/contacts';
 // image — шлях до картинки в public/quiz/; якщо файлу ще немає (null), варіант показується текстом.
 // multi — можна обрати кілька; onlyIf — крок показується лише за умови; imageFit: 'contain' — схема без обрізання.
 const isKitchen = (a) => !a.object || a.object.includes('Кухня');
+const isNotKitchen = (a) => Boolean(a.object) && !a.object.includes('Кухня');
 
 const STEPS = [
   {
@@ -29,6 +30,7 @@ const STEPS = [
   {
     key: 'style',
     title: 'Який стиль вам більше подобається?',
+    onlyIf: isKitchen,
     options: [
       { label: 'Класична', image: '/quiz/style-1.jpg' },
       { label: 'Сучасна, мінімалізм, хай-тек', image: '/quiz/style-2.jpg' },
@@ -37,6 +39,12 @@ const STEPS = [
       { label: 'Джапанді', image: '/quiz/style-5.jpg' },
       { label: 'Не визначились', image: '/quiz/style-6.jpg' },
     ],
+  },
+  {
+    key: 'style',
+    title: 'Який стиль інтер\'єру вам ближчий?',
+    onlyIf: isNotKitchen,
+    options: ['Класичний', 'Сучасний, мінімалізм', 'Лофт', 'Скандинавський', 'Джапанді', 'Ще не визначились'].map((label) => ({ label })),
   },
   {
     key: 'shape',
@@ -207,12 +215,12 @@ export default function Estimate() {
         ) : (
           <>
             <div className="mb-8">
-              <p className="text-xs uppercase tracking-[0.15em] text-[#F7C300] mb-2">Розрахунок вартості · крок {stepIndex + 1} / {totalSteps}</p>
+              <p className="text-xs uppercase tracking-[0.15em] text-[#FFD60A] mb-2">Розрахунок вартості · крок {stepIndex + 1} / {totalSteps}</p>
               <div className="h-1 bg-white/10 rounded-full overflow-hidden">
-                <motion.div className="h-full bg-[#F7C300]" animate={{ width: `${progress}%` }} transition={{ duration: 0.3 }} />
+                <motion.div className="h-full bg-[#FFD60A]" animate={{ width: `${progress}%` }} transition={{ duration: 0.3 }} />
               </div>
               {stepIndex === 0 && (
-                <p className="mt-4 flex items-center gap-2 text-sm text-[#F3E3A3]">
+                <p className="mt-4 flex items-center gap-2 text-sm text-[#FFF1BF]">
                   <Gift className="w-4 h-4 text-[#D4AF37] shrink-0" />
                   Після відповідей — бонус: «Топ-30 помилок при виборі кухні» (PDF)
                 </p>
@@ -221,13 +229,13 @@ export default function Estimate() {
 
             <AnimatePresence mode="wait">
               {!isContactStep ? (
-                <motion.div key={step.key} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.2 }}>
-                  <h1 className="text-2xl md:text-3xl font-serif font-semibold text-[#F7C300] mb-2">{step.title}</h1>
-                  {step.hint && <p className="text-base text-[#F3E3A3] mb-6">{step.hint}</p>}
+                <motion.div key={step.title} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.2 }}>
+                  <h1 className="text-2xl md:text-3xl font-serif font-semibold text-[#FFD60A] mb-2">{step.title}</h1>
+                  {step.hint && <p className="text-base text-[#FFF1BF] mb-6">{step.hint}</p>}
                   <div className={`grid gap-2.5 md:gap-3 ${step.hint ? '' : 'mt-6'} ${hasImages ? 'grid-cols-2 md:grid-cols-3' : ''}`}>
                     {step.options.map(({ label, image }) => (
                       <button key={label} type="button" onClick={() => choose(label)}
-                        className={`relative flex flex-col justify-start text-left rounded-lg border overflow-hidden transition-colors ${isChosen(label) ? 'border-[#F7C300] border-2 text-[#FFD43B] bg-[#F7C300]/15' : 'border-white/10 text-[#F7C300] bg-black/40 hover:border-[#F7C300]'}`}>
+                        className={`relative flex flex-col justify-start text-left rounded-lg border overflow-hidden transition-colors ${isChosen(label) ? 'border-[#FFD60A] border-2 text-[#FFE45C] bg-[#FFD60A]/15' : 'border-white/10 text-[#FFD60A] bg-black/40 hover:border-[#FFD60A]'}`}>
                         {image && <img src={image} alt="" className={step.imageFit === 'contain' ? 'w-full aspect-square object-contain bg-white' : 'w-full aspect-square object-cover'} />}
                         <span className={`flex items-center gap-3 ${image ? 'px-3 py-2 text-sm' : 'px-5 py-4'}`}>
                           {step.multi && (
@@ -250,8 +258,8 @@ export default function Estimate() {
               ) : (
                 <motion.form key="contact" onSubmit={handleSubmit} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.2 }} className="space-y-5">
                   <div>
-                    <h1 className="text-2xl md:text-3xl font-serif font-semibold text-[#F7C300] mb-2">Куди надіслати розрахунок?</h1>
-                    <p className="text-base text-[#F3E3A3]">Порахую вартість і запропоную, як оптимізувати під ваш бюджет.</p>
+                    <h1 className="text-2xl md:text-3xl font-serif font-semibold text-[#FFD60A] mb-2">Куди надіслати розрахунок?</h1>
+                    <p className="text-base text-[#FFF1BF]">Порахую вартість і запропоную, як оптимізувати під ваш бюджет.</p>
                   </div>
 
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
