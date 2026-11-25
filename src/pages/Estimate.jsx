@@ -182,7 +182,7 @@ export default function Estimate() {
         </Link>
       </div>
 
-      <div className={`w-full ${hasImages && !isContactStep ? 'max-w-3xl' : 'max-w-2xl'} bg-[#1A1A1A] border border-white/10 rounded-2xl p-6 md:p-10 shadow-2xl">
+      <div className={`w-full ${hasImages && !isContactStep ? 'max-w-3xl' : 'max-w-2xl'} bg-[#1A1A1A] border border-white/10 rounded-2xl p-6 md:p-10 shadow-2xl`}>
         {status === 'success' ? (
           <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-6">
             <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
