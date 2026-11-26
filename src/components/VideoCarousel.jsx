@@ -2,13 +2,15 @@ import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
+// Рілси з Instagram @lux_kitchen__ (від Сергія 26.11.2026). Назви — лише те, що видно на відео;
+// матеріали й фурнітуру не дописувати без підтвердження Сергія.
 const videos = [
-  { id: 1, src: "/3.MP4", poster: "/posters/3.jpg", title: "Сучасна кухня без ручок", desc: "Інтегрований профіль Gola та кам'яна стільниця" },
-  { id: 2, src: "/4.MP4", poster: "/posters/4.jpg", title: "Кухня з кутовим островом", desc: "Максимально ергономічне планування простору" },
-  { id: 3, src: "/2.MP4", poster: "/posters/2.jpg", title: "Мінімалізм у графітових тонах", desc: "Матові фасади з захистом від відбитків пальців" },
-  { id: 4, src: "/1.MP4", poster: "/posters/1.jpg", title: "Преміум класика з порталом", desc: "Елегантне фрезерування та прихована витяжка" },
-  { id: 5, src: "/5.MP4", poster: "/posters/5.jpg", title: "Кухня-вітальня під стелю", desc: "Приховані шафи для зберігання та розумне підсвічування" },
-  { id: 6, src: "/6.MP4", poster: "/posters/6.jpg", title: "Ергономічна кухня в ЖК", desc: "Фурнітура Blum із дотягувачами та вбудована техніка" },
+  { id: 1, src: "/1.MP4", poster: "/posters/1.jpg", title: "Світла кухня з островом" },
+  { id: 2, src: "/2.MP4", poster: "/posters/2.jpg", title: "Біла кухня з підсвіткою" },
+  { id: 3, src: "/3.MP4", poster: "/posters/3.jpg", title: "Кухня-вітальня з вітриною" },
+  { id: 4, src: "/4.MP4", poster: "/posters/4.jpg", title: "Сіра кухня з островом" },
+  { id: 5, src: "/5.MP4", poster: "/posters/5.jpg", title: "Кухня в сірих тонах — огляд зсередини" },
+  { id: 6, src: "/6.MP4", poster: "/posters/6.jpg", title: "Світла кухня з колоною під техніку" },
 ];
 
 export default function VideoCarousel() {
@@ -73,7 +75,7 @@ export default function VideoCarousel() {
                     loop
                     playsInline
                     preload="none"
-                    className="absolute inset-0 w-full h-full object-cover brightness-125 contrast-105"
+                    className="absolute inset-0 w-full h-full object-cover"
                     ref={(el) => {
                       if (el) {
                         if (hoveredIdx === idx) {
@@ -87,7 +89,7 @@ export default function VideoCarousel() {
                   />
 
                   {/* Затемнення лише внизу — щоб читався підпис */}
-                  <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none"></div>
+                  <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/75 via-black/30 to-transparent pointer-events-none"></div>
 
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                     <div className="w-16 h-16 rounded-full bg-[#FFD60A] text-[#1A1A1A] flex items-center justify-center shadow-[0_0_25px_rgba(255,214,10,0.5)] transition-transform duration-300 group-hover/card:scale-110">
@@ -105,9 +107,11 @@ export default function VideoCarousel() {
                     <h3 className="text-xl font-bold text-white mb-1.5 font-serif leading-tight drop-shadow">
                       {video.title}
                     </h3>
-                    <p className="text-gray-100 text-sm leading-snug drop-shadow">
-                      {video.desc}
-                    </p>
+                    {video.desc && (
+                      <p className="text-gray-100 text-sm leading-snug drop-shadow">
+                        {video.desc}
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
