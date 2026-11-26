@@ -13,11 +13,11 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <PainPoints />
-      <Services />
       <VideoCarousel />
-      <Team />
+      <PainPoints />
       <Testimonials />
+      <Services />
+      <Team />
       <RenovationTiming />
       <FAQ />
       <ContactForm />
